@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClothingServiceImpl implements ClothingService {
@@ -21,9 +22,8 @@ public class ClothingServiceImpl implements ClothingService {
     }
 
     @Override
-    public ResponseEntity<Clothing> getClothingById(Long id) {
-        Clothing clothing = clothingRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Clothing not found"));
-        return ResponseEntity.ok().body(clothing);
+    public Optional<Clothing> getClothingById(Long id) {
+        return clothingRepository.findById(id);
     }
 
     @Override
@@ -32,21 +32,29 @@ public class ClothingServiceImpl implements ClothingService {
     }
 
     @Override
-    public ResponseEntity<Clothing> updateClothing(Long id, Clothing clothingDetails) {
-        Clothing clothing = clothingRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Clothing not found"));
-
-        clothing.setBrand(clothingDetails.getBrand());
-        clothing.setSize(clothingDetails.getSize());
-        clothing.setColor(clothingDetails.getColor());
-
-        final Clothing updatedClothing = clothingRepository.save(clothing);
-        return ResponseEntity.ok(updatedClothing);
+    public Optional<Clothing> updateClothing(Long id, Clothing clothingDetails) {
+        return clothingRepository.findById(id).map(existingClothing -> {
+            existingClothing.setTitle(clothingDetails.getTitle());
+            existingClothing.setExplanation(clothingDetails.getExplanation());
+            existingClothing.setImageUrl(clothingDetails.getImageUrl());
+            existingClothing.setPrice(clothingDetails.getPrice());
+            existingClothing.setAmount(clothingDetails.getAmount());
+            existingClothing.setSoldAmount(clothingDetails.getSoldAmount());
+            existingClothing.setDiscountTag(clothingDetails.getDiscountTag());
+            existingClothing.setCategory(clothingDetails.getCategory());
+            existingClothing.setBrand(clothingDetails.getBrand());
+            existingClothing.setSize(clothingDetails.getSize());
+            existingClothing.setColor(clothingDetails.getColor());
+            return clothingRepository.save(existingClothing);
+        });
     }
 
     @Override
     public ResponseEntity<Void> deleteClothing(Long id) {
-        Clothing clothing = clothingRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Clothing not found"));
-        clothingRepository.delete(clothing);
-        return ResponseEntity.noContent().build();
+        if (clothingRepository.findById(id).isPresent()){
+            clothingRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

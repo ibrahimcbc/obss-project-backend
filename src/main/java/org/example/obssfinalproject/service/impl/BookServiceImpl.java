@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -21,9 +22,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ResponseEntity<Book> getBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
-        return ResponseEntity.ok().body(book);
+    public Optional<Book> getBookById(Long id) {
+        return bookRepository.findById(id);
     }
 
     @Override
@@ -32,21 +32,29 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public ResponseEntity<Book> updateBook(Long id, Book bookDetails) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
-
-        book.setAuthor(bookDetails.getAuthor());
-        book.setGenre(bookDetails.getGenre());
-        book.setPageNumber(bookDetails.getPageNumber());
-
-        final Book updatedBook = bookRepository.save(book);
-        return ResponseEntity.ok(updatedBook);
+    public Optional<Book> updateBook(Long id, Book bookDetails) {
+        return bookRepository.findById(id).map(existingBook -> {
+            existingBook.setTitle(bookDetails.getTitle());
+            existingBook.setExplanation(bookDetails.getExplanation());
+            existingBook.setImageUrl(bookDetails.getImageUrl());
+            existingBook.setPrice(bookDetails.getPrice());
+            existingBook.setAmount(bookDetails.getAmount());
+            existingBook.setSoldAmount(bookDetails.getSoldAmount());
+            existingBook.setDiscountTag(bookDetails.getDiscountTag());
+            existingBook.setCategory(bookDetails.getCategory());
+            existingBook.setAuthor(bookDetails.getAuthor());
+            existingBook.setGenre(bookDetails.getGenre());
+            existingBook.setPageNumber(bookDetails.getPageNumber());
+            return bookRepository.save(existingBook);
+        });
     }
 
     @Override
     public ResponseEntity<Void> deleteBook(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book not found"));
-        bookRepository.delete(book);
-        return ResponseEntity.noContent().build();
+        if (bookRepository.findById(id).isPresent()){
+            bookRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

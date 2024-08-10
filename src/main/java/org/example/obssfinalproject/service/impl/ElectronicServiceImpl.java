@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ElectronicServiceImpl implements ElectronicService {
@@ -21,9 +22,8 @@ public class ElectronicServiceImpl implements ElectronicService {
     }
 
     @Override
-    public ResponseEntity<Electronic> getElectronicById(Long id) {
-        Electronic electronic = electronicRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Electronic not found"));
-        return ResponseEntity.ok().body(electronic);
+    public Optional<Electronic> getElectronicById(Long id) {
+        return electronicRepository.findById(id);
     }
 
     @Override
@@ -32,22 +32,34 @@ public class ElectronicServiceImpl implements ElectronicService {
     }
 
     @Override
-    public ResponseEntity<Electronic> updateElectronic(Long id, Electronic electronicDetails) {
-        Electronic electronic = electronicRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Electronic not found"));
-
-        electronic.setBrand(electronicDetails.getBrand());
-        electronic.setStorage(electronicDetails.getStorage());
-        electronic.setRam(electronicDetails.getRam());
-
-        final Electronic updatedElectronic = electronicRepository.save(electronic);
-        return ResponseEntity.ok(updatedElectronic);
+    public Optional<Electronic> updateElectronic(Long id, Electronic electronicDetails) {
+        return electronicRepository.findById(id).map(existingElectronic -> {
+            existingElectronic.setTitle(electronicDetails.getTitle());
+            existingElectronic.setExplanation(electronicDetails.getExplanation());
+            existingElectronic.setImageUrl(electronicDetails.getImageUrl());
+            existingElectronic.setPrice(electronicDetails.getPrice());
+            existingElectronic.setAmount(electronicDetails.getAmount());
+            existingElectronic.setSoldAmount(electronicDetails.getSoldAmount());
+            existingElectronic.setDiscountTag(electronicDetails.getDiscountTag());
+            existingElectronic.setCategory(electronicDetails.getCategory());
+            existingElectronic.setBrand(electronicDetails.getBrand());
+            existingElectronic.setStorage(electronicDetails.getStorage());
+            existingElectronic.setRam(electronicDetails.getRam());
+            return electronicRepository.save(existingElectronic);
+        });
     }
 
     @Override
     public ResponseEntity<Void> deleteElectronic(Long id) {
-        Electronic electronic = electronicRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Electronic not found"));
-        electronicRepository.delete(electronic);
-        return ResponseEntity.noContent().build();
+        if (electronicRepository.findById(id).isPresent()){
+            electronicRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
+
+
+
+
 

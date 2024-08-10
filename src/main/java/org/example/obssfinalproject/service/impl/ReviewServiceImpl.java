@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -21,9 +22,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ResponseEntity<Review> getReviewById(Long id) {
-        Review review = reviewRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Review not found"));
-        return ResponseEntity.ok().body(review);
+    public Optional<Review> getReviewById(Long id) {
+        return reviewRepository.findById(id);
     }
 
     @Override
@@ -32,24 +32,25 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ResponseEntity<Review> updateReview(Long id, Review reviewDetails) {
-        Review review = reviewRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Review not found"));
-
-        review.setTitle(reviewDetails.getTitle());
-        review.setDescription(reviewDetails.getDescription());
-        review.setScore(reviewDetails.getScore());
-        review.setUserId(reviewDetails.getUserId());
-        review.setProductId(reviewDetails.getProductId());
-
-        final Review updatedReview = reviewRepository.save(review);
-        return ResponseEntity.ok(updatedReview);
+    public Optional<Review> updateReview(Long id, Review reviewDetails) {
+        return reviewRepository.findById(id).map(existingReview -> {
+            existingReview.setTitle(reviewDetails.getTitle());
+            existingReview.setDescription(reviewDetails.getDescription());
+            existingReview.setScore(reviewDetails.getScore());
+            existingReview.setUserId(reviewDetails.getUserId());
+            existingReview.setProductId(reviewDetails.getProductId());
+            return reviewRepository.save(existingReview);
+        });
     }
 
     @Override
     public ResponseEntity<Void> deleteReview(Long id) {
-        Review review = reviewRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Review not found"));
-        reviewRepository.delete(review);
-        return ResponseEntity.noContent().build();
+        if (reviewRepository.findById(id).isPresent()){
+            reviewRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
+
 
