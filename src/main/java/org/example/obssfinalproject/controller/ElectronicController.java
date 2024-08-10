@@ -1,7 +1,8 @@
 package org.example.obssfinalproject.controller;
 
-import org.example.obssfinalproject.model.products.Electronic;
-import org.example.obssfinalproject.service.ElectronicService;
+import org.example.obssfinalproject.dto.electronicDto.ElectronicReadDto;
+import org.example.obssfinalproject.dto.electronicDto.ElectronicWriteDto;
+import org.example.obssfinalproject.serviceview.ElectronicServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,30 +13,30 @@ import java.util.List;
 public class ElectronicController {
 
     @Autowired
-    private ElectronicService electronicService;
+    private ElectronicServiceView electronicServiceView;
 
     @GetMapping
-    public List<Electronic> getAllElectronics() {
-        return electronicService.getAllElectronics();
+    public List<ElectronicReadDto> getAllElectronics() {
+        return electronicServiceView.getAllElectronics();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Electronic> getElectronicById(@PathVariable Long id) {
-        return electronicService.getElectronicById(id);
+    public ResponseEntity<ElectronicReadDto> getElectronicById(@PathVariable Long id) {
+        return electronicServiceView.getElectronicById(id);
     }
 
     @PostMapping
-    public Electronic createElectronic(@RequestBody Electronic electronic) {
-        return electronicService.createElectronic(electronic);
+    public ElectronicReadDto createElectronic(@RequestBody ElectronicWriteDto electronicWriteDto) {
+        return electronicServiceView.createElectronic(electronicWriteDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Electronic> updateElectronic(@PathVariable Long id, @RequestBody Electronic electronicDetails) {
-        return electronicService.updateElectronic(id, electronicDetails);
+    public ResponseEntity<ElectronicReadDto> updateElectronic(@PathVariable Long id, @RequestBody ElectronicWriteDto electronicWriteDto) {
+        return electronicServiceView.updateElectronic(id, electronicWriteDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteElectronic(@PathVariable Long id) {
-        return electronicService.deleteElectronic(id);
+        return electronicServiceView.deleteElectronic(id);
     }
 }

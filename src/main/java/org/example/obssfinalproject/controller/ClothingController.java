@@ -1,7 +1,8 @@
 package org.example.obssfinalproject.controller;
 
-import org.example.obssfinalproject.model.products.Clothing;
-import org.example.obssfinalproject.service.ClothingService;
+import org.example.obssfinalproject.dto.clothingDto.ClothingReadDto;
+import org.example.obssfinalproject.dto.clothingDto.ClothingWriteDto;
+import org.example.obssfinalproject.serviceview.ClothingServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,31 +13,30 @@ import java.util.List;
 public class ClothingController {
 
     @Autowired
-    private ClothingService clothingService;
+    private ClothingServiceView clothingServiceView;
 
     @GetMapping
-    public List<Clothing> getAllClothing() {
-        return clothingService.getAllClothing();
+    public List<ClothingReadDto> getAllClothing() {
+        return clothingServiceView.getAllClothing();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Clothing> getClothingById(@PathVariable Long id) {
-        return clothingService.getClothingById(id);
+    public ResponseEntity<ClothingReadDto> getClothingById(@PathVariable Long id) {
+        return clothingServiceView.getClothingById(id);
     }
 
     @PostMapping
-    public Clothing createClothing(@RequestBody Clothing clothing) {
-        return clothingService.createClothing(clothing);
+    public ClothingReadDto createClothing(@RequestBody ClothingWriteDto clothingWriteDto) {
+        return clothingServiceView.createClothing(clothingWriteDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Clothing> updateClothing(@PathVariable Long id, @RequestBody Clothing clothingDetails) {
-        return clothingService.updateClothing(id, clothingDetails);
+    public ResponseEntity<ClothingReadDto> updateClothing(@PathVariable Long id, @RequestBody ClothingWriteDto clothingWriteDto) {
+        return clothingServiceView.updateClothing(id, clothingWriteDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClothing(@PathVariable Long id) {
-        return clothingService.deleteClothing(id);
+        return clothingServiceView.deleteClothing(id);
     }
 }
-

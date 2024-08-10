@@ -1,42 +1,42 @@
 package org.example.obssfinalproject.controller;
 
-import org.example.obssfinalproject.model.products.Book;
-import org.example.obssfinalproject.service.BookService;
+import org.example.obssfinalproject.dto.bookDto.BookReadDto;
+import org.example.obssfinalproject.dto.bookDto.BookWriteDto;
+import org.example.obssfinalproject.serviceview.BookServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/book")
+@RequestMapping("/api/books")
 public class BookController {
 
     @Autowired
-    private BookService bookService;
+    private BookServiceView bookServiceView;
 
     @GetMapping
-    public List<Book> getAllBook() {
-        return bookService.getAllBook();
+    public List<BookReadDto> getAllBooks() {
+        return bookServiceView.getAllBooks();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
+    public ResponseEntity<BookReadDto> getBookById(@PathVariable Long id) {
+        return bookServiceView.getBookById(id);
     }
 
     @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.createBook(book);
+    public BookReadDto createBook(@RequestBody BookWriteDto bookWriteDto) {
+        return bookServiceView.createBook(bookWriteDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookDetails) {
-        return bookService.updateBook(id, bookDetails);
+    public ResponseEntity<BookReadDto> updateBook(@PathVariable Long id, @RequestBody BookWriteDto bookWriteDto) {
+        return bookServiceView.updateBook(id, bookWriteDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        return bookService.deleteBook(id);
+        return bookServiceView.deleteBook(id);
     }
 }
-

@@ -1,7 +1,8 @@
 package org.example.obssfinalproject.controller;
 
-import org.example.obssfinalproject.model.Review;
-import org.example.obssfinalproject.service.ReviewService;
+import org.example.obssfinalproject.dto.reviewDto.ReviewReadDto;
+import org.example.obssfinalproject.dto.reviewDto.ReviewWriteDto;
+import org.example.obssfinalproject.serviceview.ReviewServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,31 +13,32 @@ import java.util.List;
 public class ReviewController {
 
     @Autowired
-    private ReviewService reviewService;
+    private ReviewServiceView reviewServiceView;
 
     @GetMapping
-    public List<Review> getAllReviews() {
-        return reviewService.getAllReviews();
+    public List<ReviewReadDto> getAllReviews() {
+        return reviewServiceView.getAllReviews();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Review> getReviewById(@PathVariable Long id) {
-        return reviewService.getReviewById(id);
+    public ResponseEntity<ReviewReadDto> getReviewById(@PathVariable Long id) {
+        return reviewServiceView.getReviewById(id);
     }
 
     @PostMapping
-    public Review createReview(@RequestBody Review review) {
-        return reviewService.createReview(review);
+    public ReviewReadDto createReview(@RequestBody ReviewWriteDto reviewWriteDto) {
+        return reviewServiceView.createReview(reviewWriteDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody Review reviewDetails) {
-        return reviewService.updateReview(id, reviewDetails);
+    public ResponseEntity<ReviewReadDto> updateReview(@PathVariable Long id, @RequestBody ReviewWriteDto reviewWriteDto) {
+        return reviewServiceView.updateReview(id, reviewWriteDto);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
-        return reviewService.deleteReview(id);
+        return reviewServiceView.deleteReview(id);
     }
 }
+
 

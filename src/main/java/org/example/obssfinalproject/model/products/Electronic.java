@@ -13,6 +13,7 @@ public class Electronic extends Product {
 
     private String brand;
     private double storage;
-    private int RAM;
+    private int ram;
+
 }
 

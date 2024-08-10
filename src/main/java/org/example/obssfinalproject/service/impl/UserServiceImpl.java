@@ -1,14 +1,13 @@
 package org.example.obssfinalproject.service.impl;
 
-import org.example.obssfinalproject.exception.ResourceNotFoundException;
 import org.example.obssfinalproject.model.User;
 import org.example.obssfinalproject.repository.UserRepository;
 import org.example.obssfinalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,9 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<User> getUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        return ResponseEntity.ok().body(user);
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
@@ -33,29 +31,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<User> updateUser(Long id, User userDetails) {
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-
-        user.setName(userDetails.getName());
-        user.setSurname(userDetails.getSurname());
-        user.setPassword(userDetails.getPassword());
-        user.setEmail(userDetails.getEmail());
-        user.setUsername(userDetails.getUsername());
-        user.setBalance(userDetails.getBalance());
-        user.setRoles(userDetails.getRoles());
-        user.setFollowers(userDetails.getFollowers());
-        user.setFavoriteList(userDetails.getFavoriteList());
-        user.setBlackList(userDetails.getBlackList());
-        user.setRecommendedProduct(userDetails.getRecommendedProduct());
-
-        final User updatedUser = userRepository.save(user);
-        return ResponseEntity.ok(updatedUser);
+    public Optional<User> updateUser(Long id, User userDetails) {
+        return userRepository.findById(id).map(existingUser -> {
+            existingUser.setName(userDetails.getName());
+            existingUser.setSurname(userDetails.getSurname());
+            existingUser.setPassword(userDetails.getPassword());
+            existingUser.setEmail(userDetails.getEmail());
+            existingUser.setUsername(userDetails.getUsername());
+            existingUser.setBalance(userDetails.getBalance());
+            existingUser.setRoles(userDetails.getRoles());
+            existingUser.setFollowers(userDetails.getFollowers());
+            existingUser.setFavoriteList(userDetails.getFavoriteList());
+            existingUser.setBlackList(userDetails.getBlackList());
+            existingUser.setRecommendedProduct(userDetails.getRecommendedProduct());
+            return userRepository.save(existingUser);
+        });
     }
 
     @Override
     public ResponseEntity<Void> deleteUser(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-        userRepository.delete(user);
-        return ResponseEntity.noContent().build();
+        if (userRepository.findById(id).isPresent()){
+            userRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

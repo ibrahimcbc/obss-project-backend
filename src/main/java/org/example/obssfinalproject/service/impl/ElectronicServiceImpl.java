@@ -37,7 +37,7 @@ public class ElectronicServiceImpl implements ElectronicService {
 
         electronic.setBrand(electronicDetails.getBrand());
         electronic.setStorage(electronicDetails.getStorage());
-        electronic.setRAM(electronicDetails.getRAM());
+        electronic.setRam(electronicDetails.getRam());
 
         final Electronic updatedElectronic = electronicRepository.save(electronic);
         return ResponseEntity.ok(updatedElectronic);
