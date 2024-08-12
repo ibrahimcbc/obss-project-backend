@@ -12,6 +12,7 @@ public class UserReadDto {
     private String name;
     private String surname;
     private String username;
+    private String email;
     private Set<Role> roles;
     private Set<User> followers;
 }

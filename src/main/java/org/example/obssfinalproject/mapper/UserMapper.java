@@ -17,6 +17,7 @@ public class UserMapper {
         dto.setUsername(user.getUsername());
         dto.setRoles(user.getRoles());
         dto.setFollowers(user.getFollowers());
+        dto.setEmail(user.getEmail());
         return dto;
     }
 
