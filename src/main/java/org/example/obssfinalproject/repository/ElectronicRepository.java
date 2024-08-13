@@ -9,6 +9,10 @@ import java.util.List;
 @Repository
 public interface ElectronicRepository extends JpaRepository<Electronic, Long> {
 
-    List<Electronic> findByTitleContainingAndExplanationContainingIgnoreCase(String keyword, String keyword1);
+    List<Electronic> findByTitleContainingOrExplanationContainingIgnoreCase(String keyword, String keyword1);
+
+    List<Electronic> findByCategoryIgnoreCase(String category);
+
+    List<Electronic> findByCategoryEqualsAndBrandContainingIgnoreCase(String category, String brand);
 }
 

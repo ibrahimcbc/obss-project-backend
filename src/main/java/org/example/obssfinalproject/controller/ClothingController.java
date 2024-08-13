@@ -2,6 +2,7 @@ package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.clothingDto.ClothingReadDto;
 import org.example.obssfinalproject.dto.clothingDto.ClothingWriteDto;
+import org.example.obssfinalproject.dto.electronicDto.ElectronicReadDto;
 import org.example.obssfinalproject.serviceview.ClothingServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,17 @@ public class ClothingController {
     public List<ClothingReadDto> searchClothing(@PathVariable String keyword) {
         return clothingServiceView.searchClothing(keyword);
     }
+
+    @GetMapping("/category/{category}")
+    public List<ClothingReadDto> getClothingByCategory(@PathVariable String category) {
+        return clothingServiceView.getClothingByCategory(category);
+    }
+
+    @GetMapping("/category/{category}/brand/{brand}")
+    public List<ClothingReadDto> getClothingByCategoryAndBrand(@PathVariable String category, @PathVariable String brand) {
+        return clothingServiceView.getClothingByCategoryAndBrand(category, brand);
+    }
+
 
     @PostMapping
     public ClothingReadDto createClothing(@RequestBody ClothingWriteDto clothingWriteDto) {

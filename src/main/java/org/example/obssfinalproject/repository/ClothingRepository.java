@@ -8,6 +8,10 @@ import java.util.List;
 
 @Repository
 public interface ClothingRepository extends JpaRepository<Clothing, Long> {
-    List<Clothing> findByTitleContainingAndExplanationContainingIgnoreCase(String keyword, String keyword2);
+    List<Clothing> findByTitleContainingOrExplanationContainingIgnoreCase(String keyword, String keyword2);
+
+    List<Clothing> findByCategoryEqualsAndBrandContainingIgnoreCase(String category, String brand);
+
+    List<Clothing> findByCategoryIgnoreCase(String category);
 }
 

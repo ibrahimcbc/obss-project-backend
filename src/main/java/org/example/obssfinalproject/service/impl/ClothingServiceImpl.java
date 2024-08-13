@@ -60,6 +60,16 @@ public class ClothingServiceImpl implements ClothingService {
 
     @Override
     public List<Clothing> searchClothing(String keyword) {
-        return clothingRepository.findByTitleContainingAndExplanationContainingIgnoreCase(keyword,keyword);
+        return clothingRepository.findByTitleContainingOrExplanationContainingIgnoreCase(keyword,keyword);
+    }
+
+    @Override
+    public List<Clothing> getClothingByCategory(String category) {
+        return clothingRepository.findByCategoryIgnoreCase(category);
+    }
+
+    @Override
+    public List<Clothing> getClothingByCategoryAndBrand(String category, String brand) {
+        return clothingRepository.findByCategoryEqualsAndBrandContainingIgnoreCase(category, brand);
     }
 }

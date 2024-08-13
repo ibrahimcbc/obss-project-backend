@@ -23,6 +23,7 @@ public class BookMapper {
         dto.setAuthor(book.getAuthor());
         dto.setGenre(book.getGenre());
         dto.setPageNumber(book.getPageNumber());
+        dto.setScore(book.getScore());
         return dto;
     }
 

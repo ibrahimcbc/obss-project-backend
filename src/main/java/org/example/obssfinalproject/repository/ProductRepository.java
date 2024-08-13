@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByTitleContainingAndExplanationContainingIgnoreCase(String keyword, String keyword1);
+    List<Product> findByTitleContainingOrExplanationContainingIgnoreCase(String keyword, String keyword1);
 }

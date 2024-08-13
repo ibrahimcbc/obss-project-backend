@@ -63,4 +63,18 @@ public class ClothingServiceViewImpl implements ClothingServiceView {
                 .map(clothingMapper::toClothingReadDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ClothingReadDto> getClothingByCategory(String category) {
+        return clothingService.getClothingByCategory(category).stream()
+                .map(clothingMapper::toClothingReadDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ClothingReadDto> getClothingByCategoryAndBrand(String category, String brand) {
+        return clothingService.getClothingByCategoryAndBrand(category, brand).stream()
+                .map(clothingMapper::toClothingReadDto)
+                .collect(Collectors.toList());
+    }
 }

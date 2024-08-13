@@ -20,5 +20,6 @@ public class BookReadDto {
     private String author;
     private String genre;
     private int pageNumber;
+    private double score;
 }
 

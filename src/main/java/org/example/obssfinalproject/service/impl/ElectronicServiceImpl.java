@@ -60,7 +60,17 @@ public class ElectronicServiceImpl implements ElectronicService {
 
     @Override
     public List<Electronic> getElectronicsByKeyword(String keyword) {
-        return electronicRepository.findByTitleContainingAndExplanationContainingIgnoreCase(keyword,keyword);
+        return electronicRepository.findByTitleContainingOrExplanationContainingIgnoreCase(keyword,keyword);
+    }
+
+    @Override
+    public List<Electronic> getElectronicsByCategory(String category) {
+        return electronicRepository.findByCategoryIgnoreCase(category);
+    }
+
+    @Override
+    public List<Electronic> getElectronicsByCategoryAndBrand(String category, String brand) {
+        return electronicRepository.findByCategoryEqualsAndBrandContainingIgnoreCase(category, brand);
     }
 }
 

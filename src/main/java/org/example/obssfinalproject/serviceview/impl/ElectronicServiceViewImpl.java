@@ -63,5 +63,19 @@ public class ElectronicServiceViewImpl implements ElectronicServiceView {
                 .map(electronicMapper::toElectronicReadDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ElectronicReadDto> getElectronicsByCategory(String category) {
+        return electronicService.getElectronicsByCategory(category).stream()
+                .map(electronicMapper::toElectronicReadDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ElectronicReadDto> getElectronicsByCategoryAndBrand(String category, String brand) {
+        return electronicService.getElectronicsByCategoryAndBrand(category, brand).stream()
+                .map(electronicMapper::toElectronicReadDto)
+                .collect(Collectors.toList());
+    }
 }
 

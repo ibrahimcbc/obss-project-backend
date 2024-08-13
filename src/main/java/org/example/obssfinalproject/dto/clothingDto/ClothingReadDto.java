@@ -20,4 +20,5 @@ public class ClothingReadDto {
     private String brand;
     private String size;
     private String color;
+    private double score;
 }

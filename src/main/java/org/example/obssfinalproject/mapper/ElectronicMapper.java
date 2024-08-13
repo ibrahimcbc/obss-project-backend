@@ -23,6 +23,7 @@ public class ElectronicMapper {
         dto.setBrand(electronic.getBrand());
         dto.setStorage(electronic.getStorage());
         dto.setRam(electronic.getRam());
+        dto.setScore(electronic.getScore());
         return dto;
     }
 

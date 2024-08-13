@@ -14,4 +14,8 @@ public interface ElectronicServiceView {
     ResponseEntity<Void> deleteElectronic(Long id);
 
     List<ElectronicReadDto> getElectronicsByKeyword(String keyword);
+
+    List<ElectronicReadDto> getElectronicsByCategory(String category);
+
+    List<ElectronicReadDto> getElectronicsByCategoryAndBrand(String category, String brand);
 }

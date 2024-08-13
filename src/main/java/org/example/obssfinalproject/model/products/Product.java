@@ -22,6 +22,7 @@ public class Product extends BaseEntity {
     private double price;
     private int amount;
     private int soldAmount;
+    private double score;
 
     @ManyToMany
     @JoinTable(

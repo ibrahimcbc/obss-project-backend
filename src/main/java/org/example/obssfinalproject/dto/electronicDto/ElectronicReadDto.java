@@ -20,4 +20,5 @@ public class ElectronicReadDto {
     private String brand;
     private double storage;
     private int ram;
+    private double score;
 }

@@ -1,8 +1,11 @@
 package org.example.obssfinalproject.service.impl;
 
 
+import lombok.Data;
 import org.example.obssfinalproject.model.Review;
+import org.example.obssfinalproject.repository.ProductRepository;
 import org.example.obssfinalproject.repository.ReviewRepository;
+import org.example.obssfinalproject.service.ProductService;
 import org.example.obssfinalproject.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ProductService productService;
 
     @Override
     public List<Review> getAllReviews() {

@@ -30,6 +30,16 @@ public class ElectronicController {
         return electronicServiceView.getElectronicsByKeyword(keyword);
     }
 
+    @GetMapping("/category/{category}")
+    public List<ElectronicReadDto> getElectronicsByCategory(@PathVariable String category) {
+        return electronicServiceView.getElectronicsByCategory(category);
+    }
+
+    @GetMapping("/category/{category}/brand/{brand}")
+    public List<ElectronicReadDto> getElectronicsByCategoryAndBrand(@PathVariable String category, @PathVariable String brand) {
+        return electronicServiceView.getElectronicsByCategoryAndBrand(category, brand);
+    }
+
     @PostMapping
     public ElectronicReadDto createElectronic(@RequestBody ElectronicWriteDto electronicWriteDto) {
         return electronicServiceView.createElectronic(electronicWriteDto);

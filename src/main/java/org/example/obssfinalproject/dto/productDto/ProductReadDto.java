@@ -18,4 +18,5 @@ public class ProductReadDto {
     private int soldAmount;
     private Set<Discount> discountTag = new HashSet<>();
     private String category;
+    private double score;
 }

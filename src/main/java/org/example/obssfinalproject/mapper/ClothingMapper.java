@@ -23,6 +23,7 @@ public class ClothingMapper {
         dto.setBrand(clothing.getBrand());
         dto.setSize(clothing.getSize());
         dto.setColor(clothing.getColor());
+        dto.setScore(clothing.getScore());
         return dto;
     }
 

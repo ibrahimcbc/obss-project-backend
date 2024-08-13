@@ -14,4 +14,8 @@ public interface ClothingServiceView {
     ResponseEntity<Void> deleteClothing(Long id);
 
     List<ClothingReadDto> searchClothing(String keyword);
+
+    List<ClothingReadDto> getClothingByCategory(String category);
+
+    List<ClothingReadDto> getClothingByCategoryAndBrand(String category, String brand);
 }
