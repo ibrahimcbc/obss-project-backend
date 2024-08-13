@@ -2,6 +2,8 @@ package org.example.obssfinalproject.service;
 
 import org.example.obssfinalproject.model.products.Clothing;
 import org.springframework.http.ResponseEntity;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,4 +13,6 @@ public interface ClothingService {
     Clothing createClothing(Clothing clothing);
     Optional<Clothing> updateClothing(Long id, Clothing clothingDetails);
     ResponseEntity<Void> deleteClothing(Long id);
+
+    List<Clothing> searchClothing(String keyword);
 }

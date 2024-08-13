@@ -25,6 +25,11 @@ public class ClothingController {
         return clothingServiceView.getClothingById(id);
     }
 
+    @GetMapping("/search/{keyword}")
+    public List<ClothingReadDto> searchClothing(@PathVariable String keyword) {
+        return clothingServiceView.searchClothing(keyword);
+    }
+
     @PostMapping
     public ClothingReadDto createClothing(@RequestBody ClothingWriteDto clothingWriteDto) {
         return clothingServiceView.createClothing(clothingWriteDto);

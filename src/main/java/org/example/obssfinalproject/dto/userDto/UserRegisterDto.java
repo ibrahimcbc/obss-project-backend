@@ -1,6 +1,9 @@
 package org.example.obssfinalproject.dto.userDto;
 
 import lombok.Data;
+import org.example.obssfinalproject.model.Role;
+
+import java.util.Set;
 
 @Data
 public class UserRegisterDto {
@@ -9,4 +12,5 @@ public class UserRegisterDto {
     private String password;
     private String email;
     private String username;
+    private Set<Role> roles;
 }

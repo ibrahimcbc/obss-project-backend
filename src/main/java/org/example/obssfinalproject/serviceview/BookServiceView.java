@@ -12,4 +12,6 @@ public interface BookServiceView {
     BookReadDto createBook(BookWriteDto bookWriteDto);
     ResponseEntity<BookReadDto> updateBook(Long id, BookWriteDto bookWriteDto);
     ResponseEntity<Void> deleteBook(Long id);
+
+    List<BookReadDto> getBooksByKeyword(String keyword);
 }

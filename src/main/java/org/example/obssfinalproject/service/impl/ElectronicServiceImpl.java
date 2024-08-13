@@ -1,6 +1,6 @@
 package org.example.obssfinalproject.service.impl;
 
-import org.example.obssfinalproject.exception.ResourceNotFoundException;
+
 import org.example.obssfinalproject.model.products.Electronic;
 import org.example.obssfinalproject.repository.ElectronicRepository;
 import org.example.obssfinalproject.service.ElectronicService;
@@ -56,6 +56,11 @@ public class ElectronicServiceImpl implements ElectronicService {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public List<Electronic> getElectronicsByKeyword(String keyword) {
+        return electronicRepository.findByTitleContainingAndExplanationContainingIgnoreCase(keyword,keyword);
     }
 }
 

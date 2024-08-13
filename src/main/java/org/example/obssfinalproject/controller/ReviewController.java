@@ -25,6 +25,16 @@ public class ReviewController {
         return reviewServiceView.getReviewById(id);
     }
 
+    @GetMapping("/byProductId/{id}")
+    public List<ReviewReadDto> getReviewsByProductId(@PathVariable Long id) {
+        return reviewServiceView.getReviewsByProductId(id);
+    }
+
+    @GetMapping("/byUserId/{id}")
+    public List<ReviewReadDto> getReviewsByUserId(@PathVariable Long id) {
+        return reviewServiceView.getReviewsByUserId(id);
+    }
+
     @PostMapping
     public ReviewReadDto createReview(@RequestBody ReviewWriteDto reviewWriteDto) {
         return reviewServiceView.createReview(reviewWriteDto);

@@ -2,6 +2,8 @@ package org.example.obssfinalproject.service;
 
 import org.example.obssfinalproject.model.products.Book;
 import org.springframework.http.ResponseEntity;
+
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,4 +13,6 @@ public interface BookService {
     Book createBook(Book book);
     Optional<Book> updateBook(Long id, Book bookDetails);
     ResponseEntity<Void> deleteBook(Long id);
+
+    List<Book> getBooksByKeyword(String keyword);
 }

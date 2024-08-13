@@ -25,6 +25,11 @@ public class ElectronicController {
         return electronicServiceView.getElectronicById(id);
     }
 
+    @GetMapping("/search/{keyword}")
+    public List<ElectronicReadDto> getElectronicsByKeyword(@PathVariable String keyword) {
+        return electronicServiceView.getElectronicsByKeyword(keyword);
+    }
+
     @PostMapping
     public ElectronicReadDto createElectronic(@RequestBody ElectronicWriteDto electronicWriteDto) {
         return electronicServiceView.createElectronic(electronicWriteDto);

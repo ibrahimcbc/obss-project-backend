@@ -56,4 +56,18 @@ public class ReviewServiceViewImpl implements ReviewServiceView {
     public ResponseEntity<Void> deleteReview(Long id) {
         return reviewService.deleteReview(id);
     }
+
+    @Override
+    public List<ReviewReadDto> getReviewsByProductId(Long id) {
+        return reviewService.getReviewsByProductId(id).stream()
+                .map(reviewMapper::toReviewReadDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReviewReadDto> getReviewsByUserId(Long id) {
+        return reviewService.getReviewsByUserId(id).stream()
+                .map(reviewMapper::toReviewReadDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -12,4 +12,6 @@ public interface ClothingServiceView {
     ClothingReadDto createClothing(ClothingWriteDto clothingWriteDto);
     ResponseEntity<ClothingReadDto> updateClothing(Long id, ClothingWriteDto clothingWriteDto);
     ResponseEntity<Void> deleteClothing(Long id);
+
+    List<ClothingReadDto> searchClothing(String keyword);
 }

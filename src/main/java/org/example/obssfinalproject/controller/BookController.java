@@ -25,6 +25,11 @@ public class BookController {
         return bookServiceView.getBookById(id);
     }
 
+    @GetMapping("/search/{keyword}")
+    public List<BookReadDto> getBooksByKeyword(@PathVariable String keyword) {
+        return bookServiceView.getBooksByKeyword(keyword);
+    }
+
     @PostMapping
     public BookReadDto createBook(@RequestBody BookWriteDto bookWriteDto) {
         return bookServiceView.createBook(bookWriteDto);

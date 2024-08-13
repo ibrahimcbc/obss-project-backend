@@ -1,6 +1,6 @@
 package org.example.obssfinalproject.service.impl;
 
-import org.example.obssfinalproject.exception.ResourceNotFoundException;
+
 import org.example.obssfinalproject.model.Review;
 import org.example.obssfinalproject.repository.ReviewRepository;
 import org.example.obssfinalproject.service.ReviewService;
@@ -50,6 +50,16 @@ public class ReviewServiceImpl implements ReviewService {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public List<Review> getReviewsByProductId(Long id) {
+        return reviewRepository.findByProductId(id);
+    }
+
+    @Override
+    public List<Review> getReviewsByUserId(Long id) {
+        return reviewRepository.findByUserId(id);
     }
 }
 

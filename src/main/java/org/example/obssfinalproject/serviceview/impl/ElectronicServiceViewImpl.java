@@ -56,5 +56,12 @@ public class ElectronicServiceViewImpl implements ElectronicServiceView {
     public ResponseEntity<Void> deleteElectronic(Long id) {
         return electronicService.deleteElectronic(id);
     }
+
+    @Override
+    public List<ElectronicReadDto> getElectronicsByKeyword(String keyword) {
+        return electronicService.getElectronicsByKeyword(keyword).stream()
+                .map(electronicMapper::toElectronicReadDto)
+                .collect(Collectors.toList());
+    }
 }
 

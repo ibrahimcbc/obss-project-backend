@@ -52,9 +52,18 @@ public class BookServiceViewImpl implements BookServiceView {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
+
     @Override
     public ResponseEntity<Void> deleteBook(Long id) {
         return bookService.deleteBook(id);
+    }
+
+    @Override
+    public List<BookReadDto> getBooksByKeyword(String keyword) {
+        return bookService.getBooksByKeyword(keyword).stream()
+                .map(bookMapper::toBookReadDto)
+                .collect(Collectors.toList());
     }
 }
 

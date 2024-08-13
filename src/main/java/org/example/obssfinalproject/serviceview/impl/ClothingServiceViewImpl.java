@@ -56,4 +56,11 @@ public class ClothingServiceViewImpl implements ClothingServiceView {
     public ResponseEntity<Void> deleteClothing(Long id) {
         return clothingService.deleteClothing(id);
     }
+
+    @Override
+    public List<ClothingReadDto> searchClothing(String keyword) {
+        return clothingService.searchClothing(keyword).stream()
+                .map(clothingMapper::toClothingReadDto)
+                .collect(Collectors.toList());
+    }
 }

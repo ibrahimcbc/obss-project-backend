@@ -12,5 +12,8 @@ public interface ReviewServiceView {
     ReviewReadDto createReview(ReviewWriteDto reviewWriteDto);
     ResponseEntity<ReviewReadDto> updateReview(Long id, ReviewWriteDto reviewWriteDto);
     ResponseEntity<Void> deleteReview(Long id);
+    List<ReviewReadDto> getReviewsByProductId(Long id);
+
+    List<ReviewReadDto> getReviewsByUserId(Long id);
 }
 

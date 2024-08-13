@@ -12,4 +12,6 @@ public interface ElectronicServiceView {
     ElectronicReadDto createElectronic(ElectronicWriteDto electronicWriteDto);
     ResponseEntity<ElectronicReadDto> updateElectronic(Long id, ElectronicWriteDto electronicWriteDto);
     ResponseEntity<Void> deleteElectronic(Long id);
+
+    List<ElectronicReadDto> getElectronicsByKeyword(String keyword);
 }

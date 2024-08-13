@@ -1,6 +1,6 @@
 package org.example.obssfinalproject.service.impl;
 
-import org.example.obssfinalproject.exception.ResourceNotFoundException;
+
 import org.example.obssfinalproject.model.products.Clothing;
 import org.example.obssfinalproject.repository.ClothingRepository;
 import org.example.obssfinalproject.service.ClothingService;
@@ -56,5 +56,10 @@ public class ClothingServiceImpl implements ClothingService {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public List<Clothing> searchClothing(String keyword) {
+        return clothingRepository.findByTitleContainingAndExplanationContainingIgnoreCase(keyword,keyword);
     }
 }
