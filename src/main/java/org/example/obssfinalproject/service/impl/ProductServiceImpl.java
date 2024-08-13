@@ -28,4 +28,13 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> searchProducts(String keyword) {
         return productRepository.findByTitleContainingOrExplanationContainingIgnoreCase(keyword,keyword);
     }
+
+
+    @Override
+    public void updateScore(Long id, double score) {
+        productRepository.findById(id).ifPresent(product -> {
+            product.setScore(score);
+            productRepository.save(product);
+        });
+    }
 }

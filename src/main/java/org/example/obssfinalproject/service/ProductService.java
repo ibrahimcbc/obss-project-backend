@@ -13,4 +13,5 @@ public interface ProductService {
 
     List<Product> searchProducts(String keyword);
 
+    void updateScore(Long id, double score);
 }

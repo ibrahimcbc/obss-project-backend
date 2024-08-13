@@ -34,6 +34,19 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Review createReview(Review review) {
+        double avgScore = 0;
+        List<Review> reviews = reviewRepository.findByProductId(review.getProductId());
+        if(!reviews.isEmpty()){
+            for(Review r : reviews){
+                avgScore+=r.getScore();
+            }
+            avgScore = avgScore+review.getScore();
+            avgScore = avgScore/(reviews.size()+1);
+        }
+        else{
+            avgScore = review.getScore();
+        }
+        productService.updateScore(review.getProductId(), avgScore);
         return reviewRepository.save(review);
     }
 
@@ -45,6 +58,19 @@ public class ReviewServiceImpl implements ReviewService {
             existingReview.setScore(reviewDetails.getScore());
             existingReview.setUserId(reviewDetails.getUserId());
             existingReview.setProductId(reviewDetails.getProductId());
+            List<Review> reviews = reviewRepository.findByProductId(existingReview.getProductId());
+            double avgScore = 0;
+            if(!reviews.isEmpty()){
+                for(Review r : reviews){
+                    avgScore+=r.getScore();
+                }
+                avgScore = avgScore-existingReview.getScore()+reviewDetails.getScore();
+                avgScore = avgScore/(reviews.size());
+            }
+            else{
+                avgScore = reviewDetails.getScore();
+            }
+            productService.updateScore(existingReview.getProductId(), avgScore);
             return reviewRepository.save(existingReview);
         });
     }

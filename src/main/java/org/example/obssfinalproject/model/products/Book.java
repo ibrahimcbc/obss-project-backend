@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 public class Book extends Product {
 
     private String author;
-    private String category;
     private String genre;
     private int pageNumber;
 }

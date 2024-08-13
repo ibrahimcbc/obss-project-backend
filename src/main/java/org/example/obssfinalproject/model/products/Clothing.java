@@ -12,7 +12,6 @@ import lombok.AllArgsConstructor;
 public class Clothing extends Product {
 
     private String brand;
-    private String category;
     private String size;
     private String color;
 }
