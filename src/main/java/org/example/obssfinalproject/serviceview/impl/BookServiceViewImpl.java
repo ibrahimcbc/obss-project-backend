@@ -2,6 +2,7 @@ package org.example.obssfinalproject.serviceview.impl;
 
 import org.example.obssfinalproject.dto.bookDto.BookReadDto;
 import org.example.obssfinalproject.dto.bookDto.BookWriteDto;
+import org.example.obssfinalproject.dto.clothingDto.ClothingReadDto;
 import org.example.obssfinalproject.mapper.BookMapper;
 import org.example.obssfinalproject.model.products.Book;
 import org.example.obssfinalproject.service.BookService;

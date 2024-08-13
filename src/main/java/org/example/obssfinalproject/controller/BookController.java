@@ -2,15 +2,16 @@ package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.bookDto.BookReadDto;
 import org.example.obssfinalproject.dto.bookDto.BookWriteDto;
+import org.example.obssfinalproject.dto.clothingDto.ClothingReadDto;
 import org.example.obssfinalproject.serviceview.BookServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/books")
-@CrossOrigin
 public class BookController {
 
     @Autowired
@@ -31,14 +32,14 @@ public class BookController {
         return bookServiceView.getBooksByKeyword(keyword);
     }
 
-    @GetMapping("/category/{category}")
-    public List<BookReadDto> getBookByCategory(@PathVariable String category) {
-        return bookServiceView.getBookByCategory(category);
-    }
-
     @GetMapping("/category/{category}/author/{author}")
     public List<BookReadDto> getBookByCategoryAndAuthor(@PathVariable String category, @PathVariable String author) {
         return bookServiceView.getBookByCategoryAndAuthor(category, author);
+    }
+
+    @GetMapping("/category/{category}")
+    public List<BookReadDto> getBookByCategory(@PathVariable String category) {
+        return bookServiceView.getBookByCategory(category);
     }
 
     @PostMapping
