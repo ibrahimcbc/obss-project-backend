@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
+@CrossOrigin
 public class BookController {
 
     @Autowired
@@ -28,6 +29,16 @@ public class BookController {
     @GetMapping("/search/{keyword}")
     public List<BookReadDto> getBooksByKeyword(@PathVariable String keyword) {
         return bookServiceView.getBooksByKeyword(keyword);
+    }
+
+    @GetMapping("/category/{category}")
+    public List<BookReadDto> getBookByCategory(@PathVariable String category) {
+        return bookServiceView.getBookByCategory(category);
+    }
+
+    @GetMapping("/category/{category}/author/{author}")
+    public List<BookReadDto> getBookByCategoryAndAuthor(@PathVariable String category, @PathVariable String author) {
+        return bookServiceView.getBookByCategoryAndAuthor(category, author);
     }
 
     @PostMapping

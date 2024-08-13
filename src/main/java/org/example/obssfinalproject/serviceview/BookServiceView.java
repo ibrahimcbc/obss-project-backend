@@ -14,4 +14,8 @@ public interface BookServiceView {
     ResponseEntity<Void> deleteBook(Long id);
 
     List<BookReadDto> getBooksByKeyword(String keyword);
+
+    List<BookReadDto> getBookByCategory(String category);
+
+    List<BookReadDto> getBookByCategoryAndAuthor(String category, String author);
 }

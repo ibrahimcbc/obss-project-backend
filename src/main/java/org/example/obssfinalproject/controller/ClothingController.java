@@ -2,7 +2,6 @@ package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.clothingDto.ClothingReadDto;
 import org.example.obssfinalproject.dto.clothingDto.ClothingWriteDto;
-import org.example.obssfinalproject.dto.electronicDto.ElectronicReadDto;
 import org.example.obssfinalproject.serviceview.ClothingServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clothing")
+@CrossOrigin
+
 public class ClothingController {
 
     @Autowired

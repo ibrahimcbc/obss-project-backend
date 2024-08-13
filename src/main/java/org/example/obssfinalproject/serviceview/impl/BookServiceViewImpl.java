@@ -65,5 +65,19 @@ public class BookServiceViewImpl implements BookServiceView {
                 .map(bookMapper::toBookReadDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<BookReadDto> getBookByCategory(String category) {
+        return bookService.getBookByCategory(category).stream()
+                .map(bookMapper::toBookReadDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BookReadDto> getBookByCategoryAndAuthor(String category, String author) {
+        return bookService.getBookByCategoryAndAuthor(category, author).stream()
+                .map(bookMapper::toBookReadDto)
+                .collect(Collectors.toList());
+    }
 }
 
