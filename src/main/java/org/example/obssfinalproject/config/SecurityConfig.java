@@ -50,14 +50,17 @@ public class SecurityConfig {
 
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .securityMatcher(
-                        "/api/users",
-                        "/api/roles",
-                        "/swagger-ui/index.html#/",
-                        "api/auth/**"
-                        )
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/api/auth/login", "/api/users").permitAll()
+                        .requestMatchers(
+                                "/api/products",
+                                "/api/electronics",
+                                "/api/books",
+                                "/api/clothing",
+                                "/api/roles",
+                                "/api/reviews",
+                                "/api/auth/login",
+                                "/api/users"
+                        ).permitAll()
                         .anyRequest().authenticated())
 //              .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
@@ -67,41 +70,5 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails user = User
-//                .withDefaultPasswordEncoder()
-//                .username("tet1k")
-//                .password("1274")
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User
-//                .withDefaultPasswordEncoder()
-//                .username("admin")
-//                .password("admin")
-//                .roles("ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user,admin);
-//    }
 }
-//        Customizer<CsrfConfigurer<HttpSecurity>> custCsrf = new Customizer<CsrfConfigurer<HttpSecurity>>() {
-//            @Override
-//            public void customize(CsrfConfigurer<HttpSecurity> configurer) {
-//                configurer.disable();
-//            }
-//        };
-//
-//        http.csrf(custCsrf);
-//
-//        Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> custHttp = new Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry>() {
-//            @Override
-//            public void customize(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry registry) {
-//                registry.anyRequest().authenticated();
-//            }
-//        };
-//
-//        http.authorizeHttpRequests(custHttp);
+
