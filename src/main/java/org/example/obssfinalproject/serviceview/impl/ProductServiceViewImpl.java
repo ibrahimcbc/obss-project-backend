@@ -60,6 +60,11 @@ public class ProductServiceViewImpl implements ProductServiceView {
     }
 
     @Override
+    public List<ProductReadDto> findByUserId(Long userId) {
+        return productMapper.toProductReadDtoList(productRepository.findByUserId(userId));
+    }
+
+    @Override
     public void deleteAllProducts() {
         productService.deleteAllProducts();
     }

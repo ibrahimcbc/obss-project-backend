@@ -4,6 +4,9 @@ import org.example.obssfinalproject.dto.productDto.ProductReadDto;
 import org.example.obssfinalproject.model.products.Product;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ProductMapper {
     public ProductReadDto toProductReadDto(Product product) {
@@ -19,5 +22,13 @@ public class ProductMapper {
         dto.setDiscountTag(product.getDiscountTag());
         dto.setScore(product.getScore());
         return dto;
+    }
+
+    public List<ProductReadDto> toProductReadDtoList(List<Product> products) {
+        List<ProductReadDto> dtoList = new ArrayList<>();
+        for (Product product : products) {
+            dtoList.add(toProductReadDto(product));
+        }
+        return dtoList;
     }
 }

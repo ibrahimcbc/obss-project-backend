@@ -14,6 +14,8 @@ public interface ProductServiceView {
 
     Optional<ProductReadDto> getProductById(Long id);
 
+    List<ProductReadDto> findByUserId(Long userId);
+
     void deleteAllProducts();
 
     List<ProductReadDto> searchProducts(String keyword);

@@ -37,6 +37,11 @@ public class ProductController {
         return ResponseEntity.of(productServiceView.getProductById(id));
     }
 
+    @GetMapping("/users/{userId}")
+    public List<ProductReadDto> getProductsByUserId(@PathVariable Long userId) {
+        return productServiceView.findByUserId(userId);
+    }
+
 
     @GetMapping("/search/{keyword}")
     public List<ProductReadDto> searchProducts(String keyword) {
