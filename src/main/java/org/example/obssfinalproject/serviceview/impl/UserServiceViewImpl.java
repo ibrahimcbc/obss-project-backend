@@ -50,20 +50,23 @@ public class UserServiceViewImpl implements UserServiceView {
 
     @Override
     public UserReadDto createUser(UserRegisterDto userRegisterDto) {
-        User user = new User();
-        user.setName(userRegisterDto.getName());
-        user.setSurname(userRegisterDto.getSurname());
-        user.setUsername(userRegisterDto.getUsername());
-        user.setPassword(userRegisterDto.getPassword());
-        user.setEmail(userRegisterDto.getEmail());
+        try {
+            User user = new User();
+            user.setName(userRegisterDto.getName());
+            user.setSurname(userRegisterDto.getSurname());
+            user.setUsername(userRegisterDto.getUsername());
+            user.setPassword(userRegisterDto.getPassword());
+            user.setEmail(userRegisterDto.getEmail());
 
-        Set<Role> roles = userRegisterDto.getRoles().stream()
-                .map(role -> roleRepository.findById(role.getId())
-                        .orElseThrow(() -> new RuntimeException("Role not found: " + role.getName())))
-                .collect(Collectors.toSet());
-        user.setRoles(roles);
-
-        return userMapper.toUserReadDto(userService.createUser(user));
+            Set<Role> roles = userRegisterDto.getRoles().stream()
+                    .map(role -> roleRepository.findById(role.getId())
+                            .orElseThrow(() -> new RuntimeException("Role not found: " + role.getName())))
+                    .collect(Collectors.toSet());
+            user.setRoles(roles);
+            return userMapper.toUserReadDto(userService.createUser(user));
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating user: " + e.getMessage());
+        }
     }
 
     @Override
