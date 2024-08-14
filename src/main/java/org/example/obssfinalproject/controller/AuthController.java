@@ -28,7 +28,7 @@ public class AuthController {
         if (isAuthenticated) {
             String token = jwtService.generateToken(userLoginDto.getUsername());
 
-            // JSON formatında yanıt oluşturmak için Map kullanıyoruz.
+            // JSON formatında yanıt oluşturmak için Map kullanıyoruz
             Map<String, String> response = new HashMap<>();
             response.put("message", "Login successful");
             response.put("token", token);
