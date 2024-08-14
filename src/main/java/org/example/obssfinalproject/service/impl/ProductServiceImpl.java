@@ -1,5 +1,6 @@
 package org.example.obssfinalproject.service.impl;
 
+import org.example.obssfinalproject.model.products.Book;
 import org.example.obssfinalproject.model.products.Product;
 import org.example.obssfinalproject.repository.ProductRepository;
 import org.example.obssfinalproject.service.ProductService;
@@ -36,5 +37,11 @@ public class ProductServiceImpl implements ProductService {
             product.setScore(score);
             productRepository.save(product);
         });
+    }
+
+    @Override
+    public Product createProduct(Product product, Long userId) {
+        product.setUserId(userId);
+        return productRepository.save(product);
     }
 }

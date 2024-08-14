@@ -1,5 +1,6 @@
 package org.example.obssfinalproject.service;
 
+import org.example.obssfinalproject.model.products.Book;
 import org.example.obssfinalproject.model.products.Product;
 
 
@@ -14,4 +15,6 @@ public interface ProductService {
     List<Product> searchProducts(String keyword);
 
     void updateScore(Long id, double score);
+
+    Product createProduct(Product product, Long userId);
 }

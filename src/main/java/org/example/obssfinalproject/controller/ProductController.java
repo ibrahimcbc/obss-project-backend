@@ -1,6 +1,7 @@
 package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
+import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
 import org.example.obssfinalproject.serviceview.ProductServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,11 @@ public class ProductController {
 
     @Autowired
     ProductServiceView productServiceView;
+
+    @PostMapping("/{userId}")
+    public ProductReadDto addProduct(@RequestBody ProductWriteDto productWriteDto, @PathVariable Long userId) {
+        return productServiceView.createProduct(productWriteDto, userId);
+    }
 
     @GetMapping()
     public List<ProductReadDto> getAllProducts() {

@@ -1,6 +1,7 @@
 package org.example.obssfinalproject.serviceview;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
+import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,6 @@ public interface ProductServiceView {
     void deleteAllProducts();
 
     List<ProductReadDto> searchProducts(String keyword);
+
+    ProductReadDto createProduct(ProductWriteDto productWriteDto, Long userId);
 }

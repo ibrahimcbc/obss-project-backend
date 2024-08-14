@@ -9,7 +9,7 @@ public interface ElectronicServiceView {
 
     List<ElectronicReadDto> getAllElectronics();
     ResponseEntity<ElectronicReadDto> getElectronicById(Long id);
-    ElectronicReadDto createElectronic(ElectronicWriteDto electronicWriteDto);
+    ElectronicReadDto createElectronic(ElectronicWriteDto electronicWriteDto, Long userId);
     ResponseEntity<ElectronicReadDto> updateElectronic(Long id, ElectronicWriteDto electronicWriteDto);
     ResponseEntity<Void> deleteElectronic(Long id);
 

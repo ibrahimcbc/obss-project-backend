@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface BookService {
     List<Book> getAllBook();
     Optional<Book> getBookById(Long id);
-    Book createBook(Book book);
+    Book createBook(Book book, Long userId);
     Optional<Book> updateBook(Long id, Book bookDetails);
     ResponseEntity<Void> deleteBook(Long id);
 

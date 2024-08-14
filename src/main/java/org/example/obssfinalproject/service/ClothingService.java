@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ClothingService {
     List<Clothing> getAllClothing();
     Optional<Clothing> getClothingById(Long id);
-    Clothing createClothing(Clothing clothing);
+    Clothing createClothing(Clothing clothing, Long userId);
     Optional<Clothing> updateClothing(Long id, Clothing clothingDetails);
     ResponseEntity<Void> deleteClothing(Long id);
 

@@ -38,9 +38,9 @@ public class BookServiceViewImpl implements BookServiceView {
     }
 
     @Override
-    public BookReadDto createBook(BookWriteDto bookWriteDto) {
+    public BookReadDto createBook(BookWriteDto bookWriteDto, Long userId) {
         Book book = bookMapper.toBook(bookWriteDto);
-        Book createdBook = bookService.createBook(book);
+        Book createdBook = bookService.createBook(book, userId);
         return bookMapper.toBookReadDto(createdBook);
     }
 

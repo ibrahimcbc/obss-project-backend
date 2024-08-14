@@ -1,6 +1,7 @@
 package org.example.obssfinalproject.mapper;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
+import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
 import org.example.obssfinalproject.model.products.Product;
 import org.springframework.stereotype.Component;
 
@@ -30,5 +31,16 @@ public class ProductMapper {
             dtoList.add(toProductReadDto(product));
         }
         return dtoList;
+    }
+
+    public Product toProduct(ProductWriteDto dto) {
+        Product product = new Product();
+        product.setTitle(dto.getTitle());
+        product.setExplanation(dto.getExplanation());
+        product.setImageUrl(dto.getImageUrl());
+        product.setPrice(dto.getPrice());
+        product.setAmount(dto.getAmount());
+        product.setDiscountTag(dto.getDiscountTag());
+        return product;
     }
 }

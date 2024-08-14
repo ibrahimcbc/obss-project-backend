@@ -1,4 +1,4 @@
-package org.example.obssfinalproject.dto.electronicDto;
+package org.example.obssfinalproject.dto.productDto;
 
 import lombok.Data;
 import org.example.obssfinalproject.model.products.Discount;
@@ -6,7 +6,7 @@ import org.example.obssfinalproject.model.products.Discount;
 import java.util.Set;
 
 @Data
-public class ElectronicWriteDto {
+public class ProductWriteDto {
     private String title;
     private String explanation;
     private String imageUrl;
@@ -14,8 +14,4 @@ public class ElectronicWriteDto {
     private int amount;
     private Set<Discount> discountTag;
     private String category;
-    private String brand;
-    private double storage;
-    private int ram;
 }
-

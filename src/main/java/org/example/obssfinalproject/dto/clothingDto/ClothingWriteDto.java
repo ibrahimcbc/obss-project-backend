@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Data
 public class ClothingWriteDto {
-    private Long userId;
     private String title;
     private String explanation;
     private String imageUrl;

@@ -42,9 +42,9 @@ public class ClothingController {
     }
 
 
-    @PostMapping
-    public ClothingReadDto createClothing(@RequestBody ClothingWriteDto clothingWriteDto) {
-        return clothingServiceView.createClothing(clothingWriteDto);
+    @PostMapping("/{userId}")
+    public ClothingReadDto createClothing(@RequestBody ClothingWriteDto clothingWriteDto, @PathVariable Long userId) {
+        return clothingServiceView.createClothing(clothingWriteDto, userId);
     }
 
     @PutMapping("/{id}")

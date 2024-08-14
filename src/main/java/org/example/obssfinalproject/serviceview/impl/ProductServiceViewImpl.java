@@ -1,7 +1,10 @@
 package org.example.obssfinalproject.serviceview.impl;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
+import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
 import org.example.obssfinalproject.mapper.ProductMapper;
+import org.example.obssfinalproject.model.products.Book;
+import org.example.obssfinalproject.model.products.Product;
 import org.example.obssfinalproject.repository.ProductRepository;
 import org.example.obssfinalproject.service.ProductService;
 import org.example.obssfinalproject.serviceview.ProductServiceView;
@@ -75,4 +78,10 @@ public class ProductServiceViewImpl implements ProductServiceView {
                 .map(productMapper::toProductReadDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ProductReadDto createProduct(ProductWriteDto productWriteDto, Long userId) {
+        Product product = productMapper.toProduct(productWriteDto);
+        Product createdBook = productService.createProduct(product, userId);
+        return productMapper.toProductReadDto(createdBook);    }
 }

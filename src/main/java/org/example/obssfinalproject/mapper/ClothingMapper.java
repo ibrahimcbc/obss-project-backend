@@ -29,7 +29,6 @@ public class ClothingMapper {
 
     public Clothing toClothing(ClothingWriteDto dto) {
         Clothing clothing = new Clothing();
-        clothing.setUserId(dto.getUserId());
         clothing.setTitle(dto.getTitle());
         clothing.setExplanation(dto.getExplanation());
         clothing.setImageUrl(dto.getImageUrl());

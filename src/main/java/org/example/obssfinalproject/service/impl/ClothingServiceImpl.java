@@ -27,7 +27,8 @@ public class ClothingServiceImpl implements ClothingService {
     }
 
     @Override
-    public Clothing createClothing(Clothing clothing) {
+    public Clothing createClothing(Clothing clothing, Long userId) {
+        clothing.setUserId(userId);
         return clothingRepository.save(clothing);
     }
 

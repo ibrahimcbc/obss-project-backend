@@ -37,9 +37,9 @@ public class ClothingServiceViewImpl implements ClothingServiceView {
     }
 
     @Override
-    public ClothingReadDto createClothing(ClothingWriteDto clothingWriteDto) {
+    public ClothingReadDto createClothing(ClothingWriteDto clothingWriteDto, Long userId) {
         Clothing clothing = clothingMapper.toClothing(clothingWriteDto);
-        Clothing createdClothing = clothingService.createClothing(clothing);
+        Clothing createdClothing = clothingService.createClothing(clothing, userId);
         return clothingMapper.toClothingReadDto(createdClothing);
     }
 

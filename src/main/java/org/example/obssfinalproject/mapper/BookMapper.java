@@ -29,7 +29,6 @@ public class BookMapper {
 
     public Book toBook(BookWriteDto dto) {
         Book book = new Book();
-        book.setUserId(dto.getUserId());
         book.setTitle(dto.getTitle());
         book.setExplanation(dto.getExplanation());
         book.setImageUrl(dto.getImageUrl());

@@ -29,7 +29,6 @@ public class ElectronicMapper {
 
     public Electronic toElectronic(ElectronicWriteDto dto) {
         Electronic electronic = new Electronic();
-        electronic.setUserId(dto.getUserId());
         electronic.setTitle(dto.getTitle());
         electronic.setExplanation(dto.getExplanation());
         electronic.setImageUrl(dto.getImageUrl());

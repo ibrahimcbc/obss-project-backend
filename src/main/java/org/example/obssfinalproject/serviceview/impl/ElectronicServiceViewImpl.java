@@ -37,9 +37,9 @@ public class ElectronicServiceViewImpl implements ElectronicServiceView {
     }
 
     @Override
-    public ElectronicReadDto createElectronic(ElectronicWriteDto electronicWriteDto) {
+    public ElectronicReadDto createElectronic(ElectronicWriteDto electronicWriteDto, Long userId) {
         Electronic electronic = electronicMapper.toElectronic(electronicWriteDto);
-        Electronic createdElectronic = electronicService.createElectronic(electronic);
+        Electronic createdElectronic = electronicService.createElectronic(electronic, userId);
         return electronicMapper.toElectronicReadDto(createdElectronic);
     }
 

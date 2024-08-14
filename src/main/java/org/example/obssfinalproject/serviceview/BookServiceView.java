@@ -9,7 +9,7 @@ public interface BookServiceView {
 
     List<BookReadDto> getAllBooks();
     ResponseEntity<BookReadDto> getBookById(Long id);
-    BookReadDto createBook(BookWriteDto bookWriteDto);
+    BookReadDto createBook(BookWriteDto bookWriteDto, Long userId);
     ResponseEntity<BookReadDto> updateBook(Long id, BookWriteDto bookWriteDto);
     ResponseEntity<Void> deleteBook(Long id);
 

@@ -42,9 +42,9 @@ public class BookController {
         return bookServiceView.getBookByCategory(category);
     }
 
-    @PostMapping
-    public BookReadDto createBook(@RequestBody BookWriteDto bookWriteDto) {
-        return bookServiceView.createBook(bookWriteDto);
+    @PostMapping("/{userId}")
+    public BookReadDto createBook(@RequestBody BookWriteDto bookWriteDto, @PathVariable Long userId) {
+        return bookServiceView.createBook(bookWriteDto, userId);
     }
 
     @PutMapping("/{id}")

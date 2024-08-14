@@ -9,7 +9,7 @@ public interface ClothingServiceView {
 
     List<ClothingReadDto> getAllClothing();
     ResponseEntity<ClothingReadDto> getClothingById(Long id);
-    ClothingReadDto createClothing(ClothingWriteDto clothingWriteDto);
+    ClothingReadDto createClothing(ClothingWriteDto clothingWriteDto, Long userId);
     ResponseEntity<ClothingReadDto> updateClothing(Long id, ClothingWriteDto clothingWriteDto);
     ResponseEntity<Void> deleteClothing(Long id);
 

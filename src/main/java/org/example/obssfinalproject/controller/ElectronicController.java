@@ -41,9 +41,9 @@ public class ElectronicController {
         return electronicServiceView.getElectronicsByCategoryAndBrand(category, brand);
     }
 
-    @PostMapping
-    public ElectronicReadDto createElectronic(@RequestBody ElectronicWriteDto electronicWriteDto) {
-        return electronicServiceView.createElectronic(electronicWriteDto);
+    @PostMapping("/{userId}")
+    public ElectronicReadDto createElectronic(@RequestBody ElectronicWriteDto electronicWriteDto, @PathVariable Long userId) {
+        return electronicServiceView.createElectronic(electronicWriteDto, userId);
     }
 
     @PutMapping("/{id}")

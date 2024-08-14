@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Data
 public class BookWriteDto {
-    private Long userId;
     private String title;
     private String explanation;
     private String imageUrl;

@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ElectronicService {
     List<Electronic> getAllElectronics();
     Optional<Electronic> getElectronicById(Long id);
-    Electronic createElectronic(Electronic electronic);
+    Electronic createElectronic(Electronic electronic, Long userId);
     Optional<Electronic> updateElectronic(Long id, Electronic electronicDetails);
     ResponseEntity<Void> deleteElectronic(Long id);
 

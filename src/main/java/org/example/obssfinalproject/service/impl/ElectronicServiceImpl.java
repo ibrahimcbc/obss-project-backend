@@ -27,7 +27,8 @@ public class ElectronicServiceImpl implements ElectronicService {
     }
 
     @Override
-    public Electronic createElectronic(Electronic electronic) {
+    public Electronic createElectronic(Electronic electronic, Long userId) {
+        electronic.setUserId(userId);
         return electronicRepository.save(electronic);
     }
 
