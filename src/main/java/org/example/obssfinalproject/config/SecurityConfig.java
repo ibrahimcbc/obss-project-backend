@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
                                 "/api/products/**",
-                                "/api/products/sort",
+                                "/api/products/sort/**",
                                 "/api/electronics/**",
                                 "/api/books/**",
                                 "/api/clothing/**",

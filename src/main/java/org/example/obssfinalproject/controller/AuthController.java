@@ -23,19 +23,13 @@ public class AuthController {
     JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<String> login(@RequestBody UserLoginDto userLoginDto) {
         boolean isAuthenticated = userServiceView.authenticateUser(userLoginDto);
         if (isAuthenticated) {
             String token = jwtService.generateToken(userLoginDto.getUsername());
-
-            // JSON formatında yanıt oluşturmak için Map kullanıyoruz
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Login successful");
-            response.put("token", token);
-
-            return ResponseEntity.ok(response); // JSON yanıtı döndürülüyor
+            return ResponseEntity.ok(token); // Token'ı direkt olarak döndürüyoruz
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Unauthorized"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 }
