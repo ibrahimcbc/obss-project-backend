@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
     @Autowired
@@ -24,7 +25,9 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserReadDto> getUserById(@PathVariable Long id) {
-        return userServiceView.getUserById(id);
+        Optional<UserReadDto> userDto = userServiceView.getUserById(id);
+        return userDto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
