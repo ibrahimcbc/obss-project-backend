@@ -46,10 +46,10 @@ public class ProductServiceViewImpl implements ProductServiceView {
     @Override
     public List<ProductReadDto> sortByAverageScore(String order) {
         if ("asc".equalsIgnoreCase(order)) {
-            return productRepository.findAll(Sort.by(Sort.Direction.ASC, "averageScore"))
+            return productRepository.findAll(Sort.by(Sort.Direction.ASC, "score"))
                     .stream().map(productMapper::toProductReadDto).collect(Collectors.toList());
         } else {
-            return productRepository.findAll(Sort.by(Sort.Direction.DESC, "averageScore"))
+            return productRepository.findAll(Sort.by(Sort.Direction.DESC, "score"))
                     .stream().map(productMapper::toProductReadDto).collect(Collectors.toList());
         }
     }

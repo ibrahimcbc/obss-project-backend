@@ -24,7 +24,7 @@ public class AuthController {
         boolean isAuthenticated = userServiceView.authenticateUser(userLoginDto);
         if (isAuthenticated) {
             String token = jwtService.generateToken(userLoginDto.getUsername());
-            return ResponseEntity.ok("Login successful : " + token);
+            return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("seaase");
         }
