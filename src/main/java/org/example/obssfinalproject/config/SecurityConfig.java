@@ -52,14 +52,14 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(
-                                "/api/products",
-                                "/api/electronics",
-                                "/api/books",
-                                "/api/clothing",
-                                "/api/roles",
-                                "/api/reviews",
-                                "/api/auth/login",
-                                "/api/users"
+                                "/api/products/**",
+                                "/api/electronics/**",
+                                "/api/books/**",
+                                "/api/clothing/**",
+                                "/api/roles/**",
+                                "/api/reviews/**",
+                                "/api/auth/login/**",
+                                "/api/users/**"
                         ).permitAll()
                         .anyRequest().authenticated())
 //              .formLogin(Customizer.withDefaults())

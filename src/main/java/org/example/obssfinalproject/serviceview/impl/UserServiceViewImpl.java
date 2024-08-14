@@ -16,6 +16,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -42,11 +43,10 @@ public class UserServiceViewImpl implements UserServiceView {
     }
 
     @Override
-    public ResponseEntity<UserReadDto> getUserById(Long id) {
+    public Optional<UserReadDto> getUserById(Long id) {
         return userService.getUserById(id)
-                .map(userMapper::toUserReadDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .map(userMapper::toUserReadDto);
+
     }
 
 
