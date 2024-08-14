@@ -1,10 +1,14 @@
 package org.example.obssfinalproject.service.impl;
 
 import org.example.obssfinalproject.model.User;
+import org.example.obssfinalproject.model.UserPrincipal;
 import org.example.obssfinalproject.repository.UserRepository;
 import org.example.obssfinalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +18,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
 
     @Override
     public List<User> getAllUsers() {
@@ -27,6 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -55,5 +62,16 @@ public class UserServiceImpl implements UserService {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = userRepository.findByUsername(username);
+        if(user ==null){
+            throw new UsernameNotFoundException("User 404");
+        }
+
+        return new UserPrincipal(user);
     }
 }

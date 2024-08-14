@@ -7,11 +7,13 @@ import org.example.obssfinalproject.mapper.UserMapper;
 import org.example.obssfinalproject.model.Role;
 import org.example.obssfinalproject.model.User;
 import org.example.obssfinalproject.repository.RoleRepository;
-import org.example.obssfinalproject.repository.UserRepository;
 import org.example.obssfinalproject.service.UserService;
 import org.example.obssfinalproject.serviceview.UserServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +32,7 @@ public class UserServiceViewImpl implements UserServiceView {
     private RoleRepository roleRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    AuthenticationManager authenticationManager;
 
     @Override
     public List<UserReadDto> getAllUsers() {
@@ -85,9 +87,9 @@ public class UserServiceViewImpl implements UserServiceView {
 
     @Override
     public boolean authenticateUser(UserLoginDto userLoginDto) {
-        User user = userRepository.findByUsername(userLoginDto.getUsername());
-
-        if (user != null && user.getPassword().equals(userLoginDto.getPassword())) {
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(userLoginDto.getUsername(), userLoginDto.getPassword()));
+        if (authentication.isAuthenticated()) {
             return true;
         }
         return false;
