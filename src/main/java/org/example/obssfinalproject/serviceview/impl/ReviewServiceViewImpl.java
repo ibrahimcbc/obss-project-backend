@@ -37,9 +37,9 @@ public class ReviewServiceViewImpl implements ReviewServiceView {
     }
 
     @Override
-    public ReviewReadDto createReview(ReviewWriteDto reviewWriteDto) {
+    public ReviewReadDto createReview(ReviewWriteDto reviewWriteDto, Long userId, Long productId) {
         Review review = reviewMapper.toReview(reviewWriteDto);
-        Review createdReview = reviewService.createReview(review);
+        Review createdReview = reviewService.createReview(review, userId, productId);
         return reviewMapper.toReviewReadDto(createdReview);
     }
 

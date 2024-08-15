@@ -24,8 +24,6 @@ public class ReviewMapper {
         review.setTitle(dto.getTitle());
         review.setDescription(dto.getDescription());
         review.setScore(dto.getScore());
-        review.setUserId(dto.getUserId());
-        review.setProductId(dto.getProductId());
         return review;
     }
 }

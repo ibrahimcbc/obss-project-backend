@@ -9,7 +9,7 @@ public interface ReviewServiceView {
 
     List<ReviewReadDto> getAllReviews();
     ResponseEntity<ReviewReadDto> getReviewById(Long id);
-    ReviewReadDto createReview(ReviewWriteDto reviewWriteDto);
+    ReviewReadDto createReview(ReviewWriteDto reviewWriteDto, Long userId, Long productId);
     ResponseEntity<ReviewReadDto> updateReview(Long id, ReviewWriteDto reviewWriteDto);
     ResponseEntity<Void> deleteReview(Long id);
     List<ReviewReadDto> getReviewsByProductId(Long id);

@@ -36,9 +36,9 @@ public class ReviewController {
         return reviewServiceView.getReviewsByUserId(id);
     }
 
-    @PostMapping
-    public ReviewReadDto createReview(@RequestBody ReviewWriteDto reviewWriteDto) {
-        return reviewServiceView.createReview(reviewWriteDto);
+    @PostMapping("{userId}/{productId}")
+    public ReviewReadDto createReview(@RequestBody ReviewWriteDto reviewWriteDto, @PathVariable Long userId, @PathVariable Long productId) {
+        return reviewServiceView.createReview(reviewWriteDto, userId, productId);
     }
 
     @PutMapping("/{id}")

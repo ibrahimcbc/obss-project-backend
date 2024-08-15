@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ReviewService {
     List<Review> getAllReviews();
     Optional<Review> getReviewById(Long id);
-    Review createReview(Review review);
+    Review createReview(Review review, Long userId, Long productId);
     Optional<Review> updateReview(Long id, Review reviewDetails);
     ResponseEntity<Void> deleteReview(Long id);
 

@@ -33,9 +33,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Review createReview(Review review) {
+    public Review createReview(Review review, Long userId, Long productId) {
         double avgScore = 0;
-        List<Review> reviews = reviewRepository.findByProductId(review.getProductId());
+        review.setUserId(userId);
+        review.setProductId(productId);
+        List<Review> reviews = reviewRepository.findByProductId(productId);
         if(!reviews.isEmpty()){
             for(Review r : reviews){
                 avgScore+=r.getScore();
