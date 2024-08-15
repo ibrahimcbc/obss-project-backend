@@ -66,6 +66,11 @@ public class UserController {
         return userServiceView.isFavorite(id, productId);
     }
 
+    @GetMapping("/{id}/isBlocked/{blockedUserId}")
+    public ResponseEntity<Boolean> isBlocked(@PathVariable Long id, @PathVariable Long blockedUserId) {
+        return userServiceView.isBlocked(id, blockedUserId);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return userServiceView.deleteUser(id);

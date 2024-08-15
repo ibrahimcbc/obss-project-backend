@@ -2,12 +2,17 @@ package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
 import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
+import org.example.obssfinalproject.dto.userDto.UserReadDto;
+import org.example.obssfinalproject.model.products.Product;
+import org.example.obssfinalproject.service.ProductService;
 import org.example.obssfinalproject.serviceview.ProductServiceView;
+import org.example.obssfinalproject.serviceview.UserServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -16,6 +21,12 @@ public class ProductController {
 
     @Autowired
     ProductServiceView productServiceView;
+
+    @Autowired
+    UserServiceView userServiceView;
+
+    @Autowired
+    ProductService productService;
 
     @PostMapping("/{userId}")
     public ProductReadDto addProduct(@RequestBody ProductWriteDto productWriteDto, @PathVariable Long userId) {
@@ -57,5 +68,11 @@ public class ProductController {
     @DeleteMapping()
     public void deleteAllProducts() {
         productServiceView.deleteAllProducts();
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<List<ProductReadDto>> getFilteredProducts(@RequestParam Long userId) {
+        List<ProductReadDto> products = productServiceView.getFilteredProducts(userId);
+        return ResponseEntity.ok(products);
     }
 }

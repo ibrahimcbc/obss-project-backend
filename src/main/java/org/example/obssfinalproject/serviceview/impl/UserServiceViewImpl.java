@@ -132,5 +132,10 @@ public class UserServiceViewImpl implements UserServiceView {
     public ResponseEntity<Boolean> isFavorite(Long id, Long productId) {
         return ResponseEntity.ok(userService.isFavorite(id, productId));
     }
+
+    @Override
+    public ResponseEntity<Boolean> isBlocked(Long id, Long blockedUserId) {
+        return ResponseEntity.ok(userService.isBlocked(id, blockedUserId));
+    }
 }
 

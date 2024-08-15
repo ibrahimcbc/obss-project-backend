@@ -24,4 +24,6 @@ public interface UserService extends UserDetailsService {
     Optional<User> removeFromBlacklist(Long id, Long blockedUserId);
 
     Boolean isFavorite(Long id, Long productId);
+
+    Boolean isBlocked(Long id, Long blockedUserId);
 }

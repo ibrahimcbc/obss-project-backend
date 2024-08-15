@@ -192,6 +192,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean isBlocked(Long id, Long blockedUserId) {
+        Optional<User> user = userRepository.findById(id);
+        Optional<User> blockedUser = userRepository.findById(blockedUserId);
+        if (user.isPresent() && blockedUser.isPresent()){
+            return user.get().getBlackList().contains(blockedUserId);
+        }
+        return false;
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByUsername(username);

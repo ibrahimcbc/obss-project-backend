@@ -2,6 +2,7 @@ package org.example.obssfinalproject.serviceview.impl;
 
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
 import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
+import org.example.obssfinalproject.exception.ResourceNotFoundException;
 import org.example.obssfinalproject.mapper.ProductMapper;
 import org.example.obssfinalproject.model.User;
 import org.example.obssfinalproject.model.products.Book;
@@ -91,14 +92,10 @@ public class ProductServiceViewImpl implements ProductServiceView {
         return productMapper.toProductReadDto(createdBook);    }
 
     @Override
-    public List<ProductReadDto> getAllProductsForUser(Long userId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        List<Product> products = productRepository.findAll();
-
-        List<Product> filteredProducts = products.stream()
-                .filter(product -> !user.getBlackList().contains(product.getUserId()))
+    public List<ProductReadDto> getFilteredProducts(Long userId) {
+        List<Product> products = productService.getFilteredProducts(userId);
+        return products.stream()
+                .map(productMapper::toProductReadDto)
                 .collect(Collectors.toList());
-
-        return productMapper.toProductReadDtoList(filteredProducts);
     }
 }

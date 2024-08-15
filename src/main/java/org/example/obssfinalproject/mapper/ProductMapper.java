@@ -21,6 +21,7 @@ public class ProductMapper {
         dto.setAmount(product.getAmount());
         dto.setSoldAmount(product.getSoldAmount());
         dto.setScore(product.getScore());
+        dto.setCategory(product.getCategory());
         return dto;
     }
 

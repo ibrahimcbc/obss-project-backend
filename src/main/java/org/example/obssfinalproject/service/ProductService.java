@@ -17,4 +17,6 @@ public interface ProductService {
     void updateScore(Long id, double score);
 
     Product createProduct(Product product, Long userId);
+
+    List<Product> getFilteredProducts(Long userId);
 }
