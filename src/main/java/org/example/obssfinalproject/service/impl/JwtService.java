@@ -12,10 +12,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
@@ -40,15 +37,17 @@ public class JwtService {
     public String generateToken(String username,Long id, String role) {
 
         Map<String,Object> claims =new HashMap<>();
-        claims.put("role",role);
-        claims.put("id",id);
-        return Jwts.builder()
+        claims.put("roles", List.of(role));
+        claims.put("userId",id);
+        String token= Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+1000*60*3))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
+        System.out.println(token);
+        return token;
     }
 
     public Key getKey() {
