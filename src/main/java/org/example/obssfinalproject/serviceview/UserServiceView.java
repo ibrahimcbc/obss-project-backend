@@ -25,4 +25,6 @@ public interface UserServiceView {
     ResponseEntity<UserReadDto> removeFromFavorites(Long id, Long favoriteProductId);
 
     ResponseEntity<UserReadDto> removeFromBlacklist(Long id, Long blockedUserId);
+
+    ResponseEntity<Boolean> isFavorite(Long id, Long productId);
 }

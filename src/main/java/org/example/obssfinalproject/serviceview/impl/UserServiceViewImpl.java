@@ -127,5 +127,10 @@ public class UserServiceViewImpl implements UserServiceView {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @Override
+    public ResponseEntity<Boolean> isFavorite(Long id, Long productId) {
+        return ResponseEntity.ok(userService.isFavorite(id, productId));
+    }
 }
 

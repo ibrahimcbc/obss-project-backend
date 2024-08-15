@@ -183,6 +183,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Boolean isFavorite(Long id, Long productId) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()){
+            return user.get().getFavoriteList().contains(productId);
+        }
+        return false;
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByUsername(username);

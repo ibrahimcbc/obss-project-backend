@@ -46,6 +46,11 @@ public class UserController {
         return userServiceView.addToBlacklist(id, blockedUserId);
     }
 
+    @PutMapping("/{id}/removeFromBlacklist/{blockedUserId}")
+    public ResponseEntity<UserReadDto> removeFromBlacklist(@PathVariable Long id, @PathVariable Long blockedUserId) {
+        return userServiceView.removeFromBlacklist(id, blockedUserId);
+    }
+
     @PutMapping("/{id}/addToFavoritelist/{favoriteProductId}")
     public ResponseEntity<UserReadDto> addToFavorites(@PathVariable Long id, @PathVariable Long favoriteProductId) {
         return userServiceView.addToFavoriteList(id, favoriteProductId);
@@ -56,9 +61,9 @@ public class UserController {
         return userServiceView.removeFromFavorites(id, favoriteProductId);
     }
 
-    @PutMapping("/{id}/removeFromBlacklist/{blockedUserId}")
-    public ResponseEntity<UserReadDto> removeFromBlacklist(@PathVariable Long id, @PathVariable Long blockedUserId) {
-        return userServiceView.removeFromBlacklist(id, blockedUserId);
+    @GetMapping("/{id}/isFavorite/{productId}")
+    public ResponseEntity<Boolean> isFavorite(@PathVariable Long id, @PathVariable Long productId) {
+        return userServiceView.isFavorite(id, productId);
     }
 
     @DeleteMapping("/{id}")
