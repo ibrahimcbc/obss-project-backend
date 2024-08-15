@@ -63,7 +63,6 @@ public class SecurityConfig {
                                 "/api/users/**"
                         ).permitAll()
                         .anyRequest().authenticated())
-//              .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
