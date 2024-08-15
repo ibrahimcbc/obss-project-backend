@@ -31,7 +31,7 @@ public class ProductController {
     public List<ProductReadDto> sortProducts(@RequestParam String sortBy, @RequestParam String order) {
         if ("price".equals(sortBy)) {
             return productServiceView.sortByPrice(order);
-        } else if ("averageScore".equals(sortBy)) {
+        } else if ("score".equals(sortBy)) {
             return productServiceView.sortByAverageScore(order);
         } else {
             throw new IllegalArgumentException("Invalid sorting parameter");
