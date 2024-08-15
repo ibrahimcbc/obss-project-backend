@@ -18,7 +18,6 @@ public class ClothingMapper {
         dto.setPrice(clothing.getPrice());
         dto.setAmount(clothing.getAmount());
         dto.setSoldAmount(clothing.getSoldAmount());
-        dto.setDiscountTag(clothing.getDiscountTag());
         dto.setCategory(clothing.getCategory());
         dto.setBrand(clothing.getBrand());
         dto.setSize(clothing.getSize());
@@ -34,7 +33,6 @@ public class ClothingMapper {
         clothing.setImageUrl(dto.getImageUrl());
         clothing.setPrice(dto.getPrice());
         clothing.setAmount(dto.getAmount());
-        clothing.setDiscountTag(dto.getDiscountTag());
         clothing.setCategory(dto.getCategory());
         clothing.setBrand(dto.getBrand());
         clothing.setSize(dto.getSize());

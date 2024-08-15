@@ -18,7 +18,6 @@ public class ElectronicMapper {
         dto.setPrice(electronic.getPrice());
         dto.setAmount(electronic.getAmount());
         dto.setSoldAmount(electronic.getSoldAmount());
-        dto.setDiscountTag(electronic.getDiscountTag());
         dto.setCategory(electronic.getCategory());
         dto.setBrand(electronic.getBrand());
         dto.setStorage(electronic.getStorage());
@@ -34,7 +33,6 @@ public class ElectronicMapper {
         electronic.setImageUrl(dto.getImageUrl());
         electronic.setPrice(dto.getPrice());
         electronic.setAmount(dto.getAmount());
-        electronic.setDiscountTag(dto.getDiscountTag());
         electronic.setCategory(dto.getCategory());
         electronic.setBrand(dto.getBrand());
         electronic.setStorage(dto.getStorage());

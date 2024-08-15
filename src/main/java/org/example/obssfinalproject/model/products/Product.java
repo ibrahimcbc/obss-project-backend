@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.example.obssfinalproject.model.BaseEntity;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
@@ -24,13 +22,6 @@ public class Product extends BaseEntity {
     private int soldAmount;
     private double score;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_discounts",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "discount_id")
-    )
-    private Set<Discount> discountTag = new HashSet<>();
 
     private String category;
 }

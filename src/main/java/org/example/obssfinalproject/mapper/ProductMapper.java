@@ -20,7 +20,6 @@ public class ProductMapper {
         dto.setPrice(product.getPrice());
         dto.setAmount(product.getAmount());
         dto.setSoldAmount(product.getSoldAmount());
-        dto.setDiscountTag(product.getDiscountTag());
         dto.setScore(product.getScore());
         return dto;
     }
@@ -40,7 +39,6 @@ public class ProductMapper {
         product.setImageUrl(dto.getImageUrl());
         product.setPrice(dto.getPrice());
         product.setAmount(dto.getAmount());
-        product.setDiscountTag(dto.getDiscountTag());
         return product;
     }
 }

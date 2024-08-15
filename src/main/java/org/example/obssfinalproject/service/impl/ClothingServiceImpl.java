@@ -41,7 +41,6 @@ public class ClothingServiceImpl implements ClothingService {
             existingClothing.setPrice(clothingDetails.getPrice());
             existingClothing.setAmount(clothingDetails.getAmount());
             existingClothing.setSoldAmount(clothingDetails.getSoldAmount());
-            existingClothing.setDiscountTag(clothingDetails.getDiscountTag());
             existingClothing.setCategory(clothingDetails.getCategory());
             existingClothing.setBrand(clothingDetails.getBrand());
             existingClothing.setSize(clothingDetails.getSize());

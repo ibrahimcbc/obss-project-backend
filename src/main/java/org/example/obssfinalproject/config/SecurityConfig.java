@@ -1,6 +1,6 @@
 package org.example.obssfinalproject.config;
 
-import org.example.obssfinalproject.config.JwtFilter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,8 +54,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/products/**",
                                 "/api/products/sort/**",
-                                "/api/electronics/**",
-                                "/api/books/**",
+                                "/api/electronic/**",
+                                "/api/book/**",
                                 "/api/clothing/**",
                                 "/api/roles/**",
                                 "/api/reviews/**",

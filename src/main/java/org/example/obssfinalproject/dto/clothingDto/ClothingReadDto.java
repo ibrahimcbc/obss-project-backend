@@ -1,9 +1,6 @@
 package org.example.obssfinalproject.dto.clothingDto;
 
 import lombok.Data;
-import org.example.obssfinalproject.model.products.Discount;
-
-import java.util.Set;
 
 @Data
 public class ClothingReadDto {
@@ -15,7 +12,6 @@ public class ClothingReadDto {
     private double price;
     private int amount;
     private int soldAmount;
-    private Set<Discount> discountTag;
     private String category;
     private String brand;
     private String size;

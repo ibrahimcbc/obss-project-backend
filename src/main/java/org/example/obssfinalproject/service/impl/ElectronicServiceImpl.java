@@ -41,7 +41,6 @@ public class ElectronicServiceImpl implements ElectronicService {
             existingElectronic.setPrice(electronicDetails.getPrice());
             existingElectronic.setAmount(electronicDetails.getAmount());
             existingElectronic.setSoldAmount(electronicDetails.getSoldAmount());
-            existingElectronic.setDiscountTag(electronicDetails.getDiscountTag());
             existingElectronic.setCategory(electronicDetails.getCategory());
             existingElectronic.setBrand(electronicDetails.getBrand());
             existingElectronic.setStorage(electronicDetails.getStorage());
