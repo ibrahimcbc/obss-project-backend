@@ -3,9 +3,11 @@ package org.example.obssfinalproject.serviceview.impl;
 import org.example.obssfinalproject.dto.productDto.ProductReadDto;
 import org.example.obssfinalproject.dto.productDto.ProductWriteDto;
 import org.example.obssfinalproject.mapper.ProductMapper;
+import org.example.obssfinalproject.model.User;
 import org.example.obssfinalproject.model.products.Book;
 import org.example.obssfinalproject.model.products.Product;
 import org.example.obssfinalproject.repository.ProductRepository;
+import org.example.obssfinalproject.repository.UserRepository;
 import org.example.obssfinalproject.service.ProductService;
 import org.example.obssfinalproject.serviceview.ProductServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class ProductServiceViewImpl implements ProductServiceView {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<ProductReadDto> getAllProducts() {
@@ -84,4 +89,16 @@ public class ProductServiceViewImpl implements ProductServiceView {
         Product product = productMapper.toProduct(productWriteDto);
         Product createdBook = productService.createProduct(product, userId);
         return productMapper.toProductReadDto(createdBook);    }
+
+    @Override
+    public List<ProductReadDto> getAllProductsForUser(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        List<Product> products = productRepository.findAll();
+
+        List<Product> filteredProducts = products.stream()
+                .filter(product -> !user.getBlackList().contains(product.getUserId()))
+                .collect(Collectors.toList());
+
+        return productMapper.toProductReadDtoList(filteredProducts);
+    }
 }

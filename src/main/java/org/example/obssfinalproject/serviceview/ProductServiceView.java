@@ -22,4 +22,6 @@ public interface ProductServiceView {
     List<ProductReadDto> searchProducts(String keyword);
 
     ProductReadDto createProduct(ProductWriteDto productWriteDto, Long userId);
+
+    List<ProductReadDto> getAllProductsForUser(Long userId);
 }
