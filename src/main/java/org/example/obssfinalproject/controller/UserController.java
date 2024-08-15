@@ -51,16 +51,6 @@ public class UserController {
         return userServiceView.addToFavoriteList(id, favoriteProductId);
     }
 
-    @PutMapping("/{id}/addToRecommendedProduct/{productId}")
-    public ResponseEntity<UserReadDto> addToRecommendedProduct(@PathVariable Long id, @PathVariable Long productId) {
-        return userServiceView.addToRecommendedProduct(id, productId);
-    }
-
-    @PutMapping("/{id}/follow/{followedUserId}")
-    public ResponseEntity<UserReadDto> followUser(@PathVariable Long id, @PathVariable Long followedUserId) {
-        return userServiceView.followUser(id, followedUserId);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return userServiceView.deleteUser(id);

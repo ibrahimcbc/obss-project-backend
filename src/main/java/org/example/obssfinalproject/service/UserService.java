@@ -19,7 +19,4 @@ public interface UserService extends UserDetailsService {
 
     Optional<User> addToFavoriteList(Long id, Long favoriteProductId);
 
-    Optional<User> addToRecommendedProduct(Long id, Long productId);
-
-    Optional<User> followUser(Long id, Long followedUserId);
 }

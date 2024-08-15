@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import org.example.obssfinalproject.model.products.Product;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,15 +34,9 @@ public class User extends BaseEntity {
     private Set<Role> roles = new HashSet<>();
 
     @ElementCollection
-    private List<Long> followers;
-
-    @ElementCollection
     private List<Long> favoriteList;
 
     @ElementCollection
     private List<Long> blackList;
-
-    @ElementCollection
-    private List<Long> recommendedProduct;
 }
 

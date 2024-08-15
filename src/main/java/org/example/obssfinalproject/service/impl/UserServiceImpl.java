@@ -115,11 +115,6 @@ public class UserServiceImpl implements UserService {
                 existingUser.setRoles(userDetails.getRoles());
             }
 
-            // Followers alanı boş değilse güncelle
-            if (userDetails.getFollowers() != null && !userDetails.getFollowers().isEmpty()) {
-                existingUser.setFollowers(userDetails.getFollowers());
-            }
-
             // FavoriteList alanı boş değilse güncelle
             if (userDetails.getFavoriteList() != null && !userDetails.getFavoriteList().isEmpty()) {
                 existingUser.setFavoriteList(userDetails.getFavoriteList());
@@ -128,11 +123,6 @@ public class UserServiceImpl implements UserService {
             // BlackList alanı boş değilse güncelle
             if (userDetails.getBlackList() != null && !userDetails.getBlackList().isEmpty()) {
                 existingUser.setBlackList(userDetails.getBlackList());
-            }
-
-            // RecommendedProduct alanı boş değilse güncelle
-            if (userDetails.getRecommendedProduct() != null && !userDetails.getRecommendedProduct().isEmpty()) {
-                existingUser.setRecommendedProduct(userDetails.getRecommendedProduct());
             }
 
             return Optional.of(userRepository.save(existingUser));
@@ -167,27 +157,6 @@ public class UserServiceImpl implements UserService {
         if (user.isPresent()){
             user.get().getFavoriteList().add(favoriteProductId);
             return Optional.of(userRepository.save(user.get()));
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> addToRecommendedProduct(Long id, Long productId) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()){
-            user.get().getRecommendedProduct().add(productId);
-            return Optional.of(userRepository.save(user.get()));
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<User> followUser(Long id, Long followedUserId) {
-        Optional<User> user = userRepository.findById(id);
-        Optional<User> followedUser = userRepository.findById(followedUserId);
-        if (user.isPresent() && followedUser.isPresent()){
-            followedUser.get().getFollowers().add(user.get().getId());
-            return Optional.of(userRepository.save(followedUser.get()));
         }
         return Optional.empty();
     }

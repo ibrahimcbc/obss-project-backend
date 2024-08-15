@@ -17,11 +17,9 @@ public class UserMapper {
         dto.setSurname(user.getSurname());
         dto.setUsername(user.getUsername());
         dto.setRoles(user.getRoles());
-        dto.setFollowers(user.getFollowers());
         dto.setEmail(user.getEmail());
         dto.setFavoriteList(user.getFavoriteList());
         dto.setBlackList(user.getBlackList());
-        dto.setRecommendedProduct(user.getRecommendedProduct());
         dto.setBalance(user.getBalance());
         return dto;
     }
@@ -50,10 +48,8 @@ public class UserMapper {
         user.setPassword(userUpdateDto.getPassword());
         user.setEmail(userUpdateDto.getEmail());
         user.setUsername(userUpdateDto.getUsername());
-        user.setFollowers(userUpdateDto.getFollowers());
         user.setFavoriteList(userUpdateDto.getFavoriteList());
         user.setBlackList(userUpdateDto.getBlackList());
-        user.setRecommendedProduct(userUpdateDto.getRecommendedProduct());
         user.setBalance(userUpdateDto.getBalance());
         return user;
     }

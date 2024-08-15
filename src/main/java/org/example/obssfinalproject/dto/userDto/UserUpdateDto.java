@@ -14,9 +14,7 @@ public class UserUpdateDto {
     private String password;
     private String email;
     private String username;
-    private List<Long> followers;
     private List<Long> favoriteList;
     private List<Long> blackList;
-    private List<Long> recommendedProduct;
     private double balance;
 }

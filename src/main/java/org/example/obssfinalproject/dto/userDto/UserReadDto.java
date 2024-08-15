@@ -15,9 +15,7 @@ public class UserReadDto {
     private String username;
     private String email;
     private Set<Role> roles;
-    private List<Long> followers;
     private List<Long> favoriteList;
     private List<Long> blackList;
-    private List<Long> recommendedProduct;
     private double balance;
 }

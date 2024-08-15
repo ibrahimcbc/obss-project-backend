@@ -22,7 +22,4 @@ public interface UserServiceView {
 
     ResponseEntity<UserReadDto> addToFavoriteList(Long id, Long favoriteProductId);
 
-    ResponseEntity<UserReadDto> addToRecommendedProduct(Long id, Long productId);
-
-    ResponseEntity<UserReadDto> followUser(Long id, Long followedUserId);
 }

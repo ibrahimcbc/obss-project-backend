@@ -112,20 +112,5 @@ public class UserServiceViewImpl implements UserServiceView {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Override
-    public ResponseEntity<UserReadDto> addToRecommendedProduct(Long id, Long productId) {
-        return userService.addToRecommendedProduct(id, productId)
-                .map(userMapper::toUserReadDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @Override
-    public ResponseEntity<UserReadDto> followUser(Long id, Long followedUserId) {
-        return userService.followUser(id, followedUserId)
-                .map(userMapper::toUserReadDto)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
 }
 
