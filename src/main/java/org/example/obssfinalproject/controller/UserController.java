@@ -41,6 +41,26 @@ public class UserController {
         return userServiceView.updateUser(id, userUpdateDto);
     }
 
+    @PutMapping("/{id}/addToBlacklist/{blockedUserId}")
+    public ResponseEntity<UserReadDto> addToBlacklist(@PathVariable Long id, @PathVariable Long blockedUserId) {
+        return userServiceView.addToBlacklist(id, blockedUserId);
+    }
+
+    @PutMapping("/{id}/addToFavoritelist/{favoriteProductId}")
+    public ResponseEntity<UserReadDto> addToFavorites(@PathVariable Long id, @PathVariable Long favoriteProductId) {
+        return userServiceView.addToFavoriteList(id, favoriteProductId);
+    }
+
+    @PutMapping("/{id}/addToRecommendedProduct/{productId}")
+    public ResponseEntity<UserReadDto> addToRecommendedProduct(@PathVariable Long id, @PathVariable Long productId) {
+        return userServiceView.addToRecommendedProduct(id, productId);
+    }
+
+    @PutMapping("/{id}/follow/{followedUserId}")
+    public ResponseEntity<UserReadDto> followUser(@PathVariable Long id, @PathVariable Long followedUserId) {
+        return userServiceView.followUser(id, followedUserId);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return userServiceView.deleteUser(id);

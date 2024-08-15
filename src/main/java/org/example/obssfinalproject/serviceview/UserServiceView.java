@@ -17,4 +17,12 @@ public interface UserServiceView {
     ResponseEntity<Void> deleteUser(Long id);
 
     boolean authenticateUser(UserLoginDto userLoginDto);
+
+    ResponseEntity<UserReadDto> addToBlacklist(Long id, Long blockedUserId);
+
+    ResponseEntity<UserReadDto> addToFavoriteList(Long id, Long favoriteProductId);
+
+    ResponseEntity<UserReadDto> addToRecommendedProduct(Long id, Long productId);
+
+    ResponseEntity<UserReadDto> followUser(Long id, Long followedUserId);
 }

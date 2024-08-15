@@ -19,6 +19,10 @@ public class UserMapper {
         dto.setRoles(user.getRoles());
         dto.setFollowers(user.getFollowers());
         dto.setEmail(user.getEmail());
+        dto.setFavoriteList(user.getFavoriteList());
+        dto.setBlackList(user.getBlackList());
+        dto.setRecommendedProduct(user.getRecommendedProduct());
+        dto.setBalance(user.getBalance());
         return dto;
     }
 

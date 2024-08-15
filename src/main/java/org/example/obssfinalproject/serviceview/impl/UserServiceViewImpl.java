@@ -95,5 +95,37 @@ public class UserServiceViewImpl implements UserServiceView {
         }
         return false;
     }
+
+    @Override
+    public ResponseEntity<UserReadDto> addToBlacklist(Long id, Long blockedUserId) {
+        return userService.addToBlacklist(id, blockedUserId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<UserReadDto> addToFavoriteList(Long id, Long favoriteProductId) {
+        return userService.addToFavoriteList(id, favoriteProductId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<UserReadDto> addToRecommendedProduct(Long id, Long productId) {
+        return userService.addToRecommendedProduct(id, productId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<UserReadDto> followUser(Long id, Long followedUserId) {
+        return userService.followUser(id, followedUserId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 

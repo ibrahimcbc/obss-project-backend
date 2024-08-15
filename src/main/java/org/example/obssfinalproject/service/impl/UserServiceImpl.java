@@ -151,6 +151,48 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> addToBlacklist(Long id, Long blockedUserId) {
+        Optional<User> user = userRepository.findById(id);
+        Optional<User> blockedUser = userRepository.findById(blockedUserId);
+        if (user.isPresent() && blockedUser.isPresent()){
+            user.get().getBlackList().add(blockedUser.get().getId());
+            return Optional.of(userRepository.save(user.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> addToFavoriteList(Long id, Long favoriteProductId) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()){
+            user.get().getFavoriteList().add(favoriteProductId);
+            return Optional.of(userRepository.save(user.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> addToRecommendedProduct(Long id, Long productId) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()){
+            user.get().getRecommendedProduct().add(productId);
+            return Optional.of(userRepository.save(user.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> followUser(Long id, Long followedUserId) {
+        Optional<User> user = userRepository.findById(id);
+        Optional<User> followedUser = userRepository.findById(followedUserId);
+        if (user.isPresent() && followedUser.isPresent()){
+            followedUser.get().getFollowers().add(user.get().getId());
+            return Optional.of(userRepository.save(followedUser.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByUsername(username);
