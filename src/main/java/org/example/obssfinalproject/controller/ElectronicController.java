@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/electronics")
+@RequestMapping("/api/electronic")
 public class ElectronicController {
 
     @Autowired

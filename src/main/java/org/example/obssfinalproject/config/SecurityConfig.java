@@ -60,7 +60,8 @@ public class SecurityConfig {
                                 "/api/roles/**",
                                 "/api/reviews/**",
                                 "/api/auth/login/**",
-                                "/api/users/**"
+                                "/api/users/**",
+                                "/add-product/**"
                         ).permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())

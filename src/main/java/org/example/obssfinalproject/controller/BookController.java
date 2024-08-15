@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/books")
+@RequestMapping("/api/book")
 public class BookController {
 
     @Autowired
