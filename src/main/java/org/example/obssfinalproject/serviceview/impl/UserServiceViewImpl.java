@@ -112,5 +112,20 @@ public class UserServiceViewImpl implements UserServiceView {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Override
+    public ResponseEntity<UserReadDto> removeFromFavorites(Long id, Long favoriteProductId){
+        return userService.removeFromFavorites(id, favoriteProductId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public ResponseEntity<UserReadDto> removeFromBlacklist(Long id, Long blockedUserId){
+        return userService.removeFromBlacklist(id, blockedUserId)
+                .map(userMapper::toUserReadDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 

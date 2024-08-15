@@ -19,4 +19,7 @@ public interface UserService extends UserDetailsService {
 
     Optional<User> addToFavoriteList(Long id, Long favoriteProductId);
 
+    Optional<User> removeFromFavorites(Long id, Long favoriteProductId);
+
+    Optional<User> removeFromBlacklist(Long id, Long blockedUserId);
 }

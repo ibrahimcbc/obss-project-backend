@@ -162,6 +162,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<User> removeFromFavorites(Long id, Long favoriteProductId){
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()){
+            user.get().getFavoriteList().remove(favoriteProductId);
+            return Optional.of(userRepository.save(user.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> removeFromBlacklist(Long id, Long blockedUserId){
+        Optional<User> user = userRepository.findById(id);
+        Optional<User> blockedUser = userRepository.findById(blockedUserId);
+        if (user.isPresent() && blockedUser.isPresent()){
+            user.get().getBlackList().remove(blockedUserId);
+            return Optional.of(userRepository.save(user.get()));
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findByUsername(username);

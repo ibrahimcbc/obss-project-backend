@@ -22,4 +22,7 @@ public interface UserServiceView {
 
     ResponseEntity<UserReadDto> addToFavoriteList(Long id, Long favoriteProductId);
 
+    ResponseEntity<UserReadDto> removeFromFavorites(Long id, Long favoriteProductId);
+
+    ResponseEntity<UserReadDto> removeFromBlacklist(Long id, Long blockedUserId);
 }
