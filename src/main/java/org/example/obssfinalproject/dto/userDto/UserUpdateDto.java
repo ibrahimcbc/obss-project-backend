@@ -4,6 +4,7 @@ import lombok.Data;
 import org.example.obssfinalproject.model.User;
 import org.example.obssfinalproject.model.products.Product;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -13,9 +14,9 @@ public class UserUpdateDto {
     private String password;
     private String email;
     private String username;
-    private Set<User> followers;
-    private Set<Product> favoriteList;
-    private Set<User> blackList;
-    private Set<Product> recommendedProduct;
+    private List<Long> followers;
+    private List<Long> favoriteList;
+    private List<Long> blackList;
+    private List<Long> recommendedProduct;
     private double balance;
 }

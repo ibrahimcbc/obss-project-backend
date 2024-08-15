@@ -4,6 +4,7 @@ import lombok.Data;
 import org.example.obssfinalproject.model.Role;
 import org.example.obssfinalproject.model.User;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -14,5 +15,5 @@ public class UserReadDto {
     private String username;
     private String email;
     private Set<Role> roles;
-    private Set<User> followers;
+    private List<Long> followers;
 }
