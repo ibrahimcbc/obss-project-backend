@@ -3,6 +3,7 @@ package org.example.obssfinalproject.serviceview.impl;
 import org.example.obssfinalproject.dto.userDto.UserLoginDto;
 import org.example.obssfinalproject.dto.userDto.UserReadDto;
 import org.example.obssfinalproject.dto.userDto.UserRegisterDto;
+import org.example.obssfinalproject.dto.userDto.UserUpdateDto;
 import org.example.obssfinalproject.mapper.UserMapper;
 import org.example.obssfinalproject.model.Role;
 import org.example.obssfinalproject.model.User;
@@ -72,8 +73,8 @@ public class UserServiceViewImpl implements UserServiceView {
     }
 
     @Override
-    public ResponseEntity<UserReadDto> updateUser(Long id, UserRegisterDto userRegisterDto) {
-        User user = userMapper.toUser(userRegisterDto);
+    public ResponseEntity<UserReadDto> updateUser(Long id, UserUpdateDto userUpdateDto) {
+        User user = userMapper.toUser(userUpdateDto);
         return userService.updateUser(id, user)
                 .map(userMapper::toUserReadDto)
                 .map(ResponseEntity::ok)

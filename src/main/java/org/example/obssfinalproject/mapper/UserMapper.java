@@ -3,6 +3,7 @@ package org.example.obssfinalproject.mapper;
 import org.example.obssfinalproject.dto.userDto.UserLoginDto;
 import org.example.obssfinalproject.dto.userDto.UserReadDto;
 import org.example.obssfinalproject.dto.userDto.UserRegisterDto;
+import org.example.obssfinalproject.dto.userDto.UserUpdateDto;
 import org.example.obssfinalproject.model.User;
 import org.springframework.stereotype.Component;
 
@@ -38,5 +39,20 @@ public class UserMapper {
         dto.setPassword(user.getPassword());
         return dto;
     }
+    public User toUser(UserUpdateDto userUpdateDto){
+        User user = new User();
+        user.setName(userUpdateDto.getName());
+        user.setSurname(userUpdateDto.getSurname());
+        user.setPassword(userUpdateDto.getPassword());
+        user.setEmail(userUpdateDto.getEmail());
+        user.setUsername(userUpdateDto.getUsername());
+        user.setFollowers(userUpdateDto.getFollowers());
+        user.setFavoriteList(userUpdateDto.getFavoriteList());
+        user.setBlackList(userUpdateDto.getBlackList());
+        user.setRecommendedProduct(userUpdateDto.getRecommendedProduct());
+        user.setBalance(userUpdateDto.getBalance());
+        return user;
+    }
+
 }
 

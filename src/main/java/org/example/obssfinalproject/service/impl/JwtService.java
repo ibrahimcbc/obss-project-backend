@@ -31,17 +31,17 @@ public class JwtService {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
             SecretKey secretKey = keyGen.generateKey();
-            System.out.println("Secret Key : " + secretKey.toString());
             return Base64.getEncoder().encodeToString(secretKey.getEncoded());
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Error generating secret key", e);
         }
     }
 
-    public String generateToken(String username) {
+    public String generateToken(String username,Long id, String role) {
 
         Map<String,Object> claims =new HashMap<>();
-
+        claims.put("role",role);
+        claims.put("id",id);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)

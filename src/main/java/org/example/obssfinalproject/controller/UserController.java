@@ -2,6 +2,7 @@ package org.example.obssfinalproject.controller;
 
 import org.example.obssfinalproject.dto.userDto.UserReadDto;
 import org.example.obssfinalproject.dto.userDto.UserRegisterDto;
+import org.example.obssfinalproject.dto.userDto.UserUpdateDto;
 import org.example.obssfinalproject.serviceview.UserServiceView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserReadDto> updateUser(@PathVariable Long id, @RequestBody UserRegisterDto userRegisterDto) {
-        return userServiceView.updateUser(id, userRegisterDto);
+    public ResponseEntity<UserReadDto> updateUser(@PathVariable Long id, @RequestBody UserUpdateDto userUpdateDto) {
+        return userServiceView.updateUser(id, userUpdateDto);
     }
 
     @DeleteMapping("/{id}")
